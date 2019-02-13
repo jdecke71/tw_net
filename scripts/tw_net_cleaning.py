@@ -85,46 +85,86 @@ def StatusToDF(days,sets,calls,clean=True):
 
     return tweets
 
+
+
+def FlattenEntity(entity_list,catch):
+    accum= []
+    for y in range(0,len(entity_list)):
+        entity = entity_list[y][catch]
+        accum.append(entity)
+
+    stringCollector = []    
+    for x,y in enumerate(accum):
+        tmpstring = ''
+        for i in range(0,len(y)):
+            tmpstring += y[i]+' '
+        stringCollector.append(tmpstring)
+
+    return stringCollector
+
+
+'''
+Flatten entities
+'''
+def FlattenEntities(entities_list):
+    entities = []
+
+    tagStrings = [] 
+    mediaStrings = [] 
+    symbolStrings = [] 
+    urlStrings = []
+    userMentionsStrings = []
+    for entity in entities_list:
+        keys = entity.keys()
+        if 'hashtags' in keys:
+            tagStrings.append(FlattenEntity(entity['hashtags'],'text'))
+        else:
+            tagStrings.append('')
+        if 'media' in keys:
+            mediaStrings.append(FlattenEntity(entity['media'],'type'))
+        else:
+            mediaStrings.append('')
+        if 'symbols' in keys:
+            symbolStrings.append(FlattenEntity(entity['symbols'],'text'))
+        else:
+            symbolStrings.append('')
+        if 'urls' in keys:
+            urlStrings.append(FlattenEntity(entity['urls'],'url'))
+        else:
+            urlStrings.append('')
+        if 'user_mentions' in keys:
+            userMentionsStrings.append(FlattenEntity(entity['user_mentions'],'id_str'))
+        else:
+            userMentionsStrings.append('')
+
+
+    entities = [tagStrings,mediaStrings,symbolStrings,urlStrings,userMentionsStrings]
+
+    return entities
+
+    
+    
+    
 '''
 Return a list tweet ids for all tweets in a flat json file
 '''
 def CleanTweets(tweets):
-    
-    '''
-    Set initial columns
-    
-    '''
-    columns = ['created_at', 'entities','favorite_count', 'id_str','in_reply_to_status_id_str','in_reply_to_user_id_str', 
-    'is_quote_status', 'lang', 'place','retweet_count', 'retweeted', 'source', 'text', 'user','truncated','calltime', 'day','set','call',]
-
+    # Set initial columns
+    columns = ['created_at', 'entities','favorite_count', 'id_str','in_reply_to_status_id_str','in_reply_to_user_id_str', 'is_quote_status', 'lang', 'place','retweet_count', 'retweeted', 'source', 'text', 'user','truncated','calltime', 'day','set','call','truncated','is_quote_status']
 
     tweets = tweets[columns]
 
-    '''
-    Flatten entities
-    Using hashtags only
-    '''
+    # Get list of entities foe each type. Must return in order no NA
     entities_list = tweets['entities'].tolist()
-    count = 0
-    hashtags = []
-    for x in entities_list:
-        tags= []
-        for y in range(0,len(x['hashtags'])):
-            tag = x['hashtags'][y]['text']
-            tags.append(tag)
-        hashtags.append(tags)
-        count += 1
-
-    tagStrings = []    
-    for x,y in enumerate(hashtags):
-        tagstring = ''
-        for i in range(0,len(y)):
-            tagstring += y[i]+' '
-        tagStrings.append(tagstring)
-
-    tweets['hashtags'] = tagStrings
+    entities = FlattenEntities(entities_list)
+    tweets['hashtags'] = entities[0]
+    tweets['media'] = entities[1]
+    tweets['symbols'] = entities[2]
+    tweets['urls'] = entities[3]
+    tweets['user_mentions'] = entities[4]
     tweets = tweets.drop(columns= 'entities')
     
+
     '''
     Flatten user
     '''
@@ -137,7 +177,7 @@ def CleanTweets(tweets):
      'followers_count',
      'friends_count',
      'id_str',
-     'lang',
+     'listed_count',
      'location',
      'name',
      'profile_background_color',
@@ -148,58 +188,64 @@ def CleanTweets(tweets):
      'screen_name',
      'statuses_count',
      'verified']
-
-    # field_data = []
-    # for field in user_fields:
-    #     tmp = {}
-    #     for user in users:
-    #         tmp['field_name'] = str(field)
-    #         tmp['field_values'] = field
-
-    #     field_data.append(tmp)
-
-    # for field in field_data:
-    #     for values in field.values[1]:
-        # print()
-            # print(values)
-        # for key in field.keys():
-            # print(field.values())
-    #     if field.keys() == 'created_at':
-    #         tweets[str('user_created_at')] = field
-    #     elif field.keys() == 'id_str':
-    #         tweets[str('user_id_str')] = field
-    #     else:
-    #         tweets[str(field.keys())] = field
-
-    # tweets = tweets.drop(columns= 'user')
             
 
-
-    names = []
-    user_ids = []
+    created_at = []
+    description = []
+    name = []
+    id_str = []
     followers_counts = []
     friends_counts = []
-    created_dates = []
-    user_descs = []
-    fave_counts = []
-    u_langs = []
+    favorites_counts = []
+    listed_count = []
     location = []
+    profile_background_color = []
+    profile_background_image_url = []
+    profile_image_url = []
+    profile_text_color = []
+    profile_use_background_image = []
+    screen_name = []
+    statuses_count = []
+    verified = []
     for user in users:
-        names.append(user['name'])
-        user_ids.append(user['id_str'])
+        created_at.append(user['created_at'])
+        description.append('description')
+        favorites_counts.append(user['favourites_count'])
         followers_counts.append(user['followers_count'])
         friends_counts.append(user['friends_count'])
-        u_langs.append(user['lang'])
-        created_dates.append(user['created_at'])
-        user_descs.append(user['description'])
-        fave_counts.append(user['favourites_count'])
+        id_str.append(user['id_str'])
+        listed_count.append(user['listed_count'])
+        location.append(user['location'])
+        name.append(user['name'])
+        profile_background_color.append(user['profile_background_color'])
+        profile_background_image_url.append(user['profile_background_image_url'])
+        profile_image_url.append(user['profile_image_url'])
+        profile_text_color.append(user['profile_text_color'])
+        profile_use_background_image.append(user['profile_use_background_image'])
+        screen_name.append(user['screen_name'])
+        statuses_count.append(user['statuses_count'])
+        verified.append(user['verified'])     
     
     # Add column to df
-    tweets['userName'] = names
-    tweets['user_id'] = user_ids
+    tweets['user_created_at'] = created_at
+    tweets['user_description'] = description
+    tweets['favorites_counts'] = favorites_counts
     tweets['followers_count'] = followers_counts
     tweets['friends_count'] = friends_counts
-    # tweets['friends_count']
+    tweets['user_id_str'] = id_str
+    tweets['listed_count'] = listed_count
+    tweets['user_name'] = name
+    tweets['user_location'] = location
+    tweets['profile_background_color'] = profile_background_color
+    tweets['profile_background_image_url'] = profile_background_image_url
+    tweets['profile_image_url'] = profile_image_url
+    tweets['profile_text_color'] = profile_text_color
+    tweets['profile_use_background_image'] = profile_use_background_image
+    tweets['user_screen_name'] = screen_name
+    tweets['statuses_count'] = statuses_count
+    tweets['verified'] = verified
+    
+    
     tweets = tweets.drop(columns= 'user')
 
     
@@ -210,14 +256,14 @@ def CleanTweets(tweets):
     places_list = tweets['place'].tolist()
     place_names = []
     place_ids = []
-    # for place in places_list:
-    #     place_name = place['full_name']
-    #     place_id = place['id']
-    #     place_names.append(place_name)
-    #     place_ids.append(place_id)
+    for place in places_list:
+        place_name = place['full_name']
+        place_id = place['id']
+        place_names.append(place_name)
+        place_ids.append(place_id)
 
-    # tweets['place_names'] = place_names
-    # tweets['place_ids'] = place_ids
+    tweets['place_names'] = place_names
+    tweets['place_ids'] = place_ids
 
     tweets = tweets.drop(columns='place')
     
@@ -250,19 +296,27 @@ def CleanTweets(tweets):
 #         adjusted_time = adjusted_time. tz.replace(tzinfo=None)
         offsets.append(adjusted_time)
         
-    tweets['created_time'] = offsets  
+    tweets['created_time'] = offsets
+    tweets= tweets.drop(columns=['created_at'])  
     
     # set order
-    cols_final = ['id_str','text', 'hashtags', 'favorite_count', 'retweet_count', 'created_time','calltime', 'day', 'set', 'call',
-       'userName','user_id','followers_count','friends_count', 'place_names', 'place_ids','lang', 'sources','in_reply_to_status_id_str', 'in_reply_to_user_id_str',]
+    cols_final = ['id_str','text','hashtags', 'media', 'symbols', 'urls','user_mentions','created_time','calltime', 'day', 'set', 'call','favorite_count','retweet_count',
+    'in_reply_to_status_id_str','in_reply_to_user_id_str', 'is_quote_status', 'lang','retweeted',  'truncated', 'place_names', 'place_ids', 'sources','truncated', 'is_quote_status',
+       'user_name','user_id_str', 'user_description','user_created_at','user_location','favorites_counts', 'followers_count', 'friends_count', 
+        'profile_background_color','profile_image_url','profile_background_image_url', 'profile_text_color','profile_use_background_image', 'user_screen_name', 'statuses_count','listed_count',
+       'verified',
+       ]
 
-    # tweets = tweets[cols_final]
+    tweets = tweets[cols_final]
 
-    # tweets['favorite_count'] = tweets['favorite_count'].astype(int)
-    # tweets['retweet_count'] = tweets['favorite_count'].astype(int)
+    # Set datatypes
+    tweets['favorite_count'] = tweets['favorite_count'].astype(int)
+    tweets['retweet_count'] = tweets['retweet_count'].astype(int)
     # tweets['calltime'] = tweets['favorite_count'].astype(datetime.datetime)
-    # tweets['followers_count'] = tweets['followers_count'].astype(int)
-    # tweets['friends_count'] = tweets['friends_count'].astype(int)
+    tweets['followers_count'] = tweets['followers_count'].astype(int)
+    tweets['friends_count'] = tweets['friends_count'].astype(int)
+    tweets['statuses_count'] = tweets['statuses_count'].astype(int)
+    tweets['listed_count'] = tweets['listed_count'].astype(int)
     
     return tweets
 
