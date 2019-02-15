@@ -150,7 +150,7 @@ Return a list tweet ids for all tweets in a flat json file
 '''
 def CleanTweets(tweets):
     # Set initial columns
-    columns = ['created_at', 'entities','favorite_count', 'id_str','in_reply_to_status_id_str','in_reply_to_user_id_str', 'is_quote_status', 'lang', 'place','retweet_count', 'retweeted', 'source', 'text', 'user','truncated','calltime', 'day','set','call','truncated','is_quote_status']
+    columns = ['created_at', 'entities','favorite_count', 'id_str','in_reply_to_status_id_str','in_reply_to_user_id_str', 'is_quote_status', 'lang', 'place','retweet_count', 'retweeted', 'source', 'text', 'user','truncated','calltime', 'day','set','call']
 
     tweets = tweets[columns]
 
@@ -209,7 +209,7 @@ def CleanTweets(tweets):
     verified = []
     for user in users:
         created_at.append(user['created_at'])
-        description.append('description')
+        description.append(user['description'])
         favorites_counts.append(user['favourites_count'])
         followers_counts.append(user['followers_count'])
         friends_counts.append(user['friends_count'])
@@ -218,10 +218,10 @@ def CleanTweets(tweets):
         location.append(user['location'])
         name.append(user['name'])
         profile_background_color.append(user['profile_background_color'])
-        profile_background_image_url.append(user['profile_background_image_url'])
+        # profile_background_image_url.append(user['profile_background_image_url'])
         profile_image_url.append(user['profile_image_url'])
         profile_text_color.append(user['profile_text_color'])
-        profile_use_background_image.append(user['profile_use_background_image'])
+        # profile_use_background_image.append(user['profile_use_background_image'])
         screen_name.append(user['screen_name'])
         statuses_count.append(user['statuses_count'])
         verified.append(user['verified'])     
@@ -237,14 +237,13 @@ def CleanTweets(tweets):
     tweets['user_name'] = name
     tweets['user_location'] = location
     tweets['profile_background_color'] = profile_background_color
-    tweets['profile_background_image_url'] = profile_background_image_url
+    # tweets['profile_background_image_url'] = profile_background_image_url
     tweets['profile_image_url'] = profile_image_url
     tweets['profile_text_color'] = profile_text_color
-    tweets['profile_use_background_image'] = profile_use_background_image
+    # tweets['profile_use_background_image'] = profile_use_background_image
     tweets['user_screen_name'] = screen_name
     tweets['statuses_count'] = statuses_count
     tweets['verified'] = verified
-    
     
     tweets = tweets.drop(columns= 'user')
 
@@ -283,29 +282,81 @@ def CleanTweets(tweets):
 
     tweets['sources'] = source_types
     tweets = tweets.drop(columns= 'source')
+
+
+    '''
+    Count URLS if needed
+    '''
+
     
     '''
     Offset time with utc offset
     '''
     offsets = []
     created_times = tweets['created_at'].tolist()
+    created_dotw = []
+    created_hr = []
     for time in created_times:
         time_obj = datetime.datetime.strptime(time,'%a %b %d %H:%M:%S %z %Y')
         offset = datetime.timedelta(hours=5)
         adjusted_time = time_obj-offset
 #         adjusted_time = adjusted_time. tz.replace(tzinfo=None)
         offsets.append(adjusted_time)
+        created_dotw.append(time[0:3])
+        created_hr.append(adjusted_time.hour)
+    tweets['created_dotw'] = created_dotw
+    tweets['created_hr'] = created_hr
+
         
     tweets['created_time'] = offsets
     tweets= tweets.drop(columns=['created_at'])  
     
     # set order
-    cols_final = ['id_str','text','hashtags', 'media', 'symbols', 'urls','user_mentions','created_time','calltime', 'day', 'set', 'call','favorite_count','retweet_count',
-    'in_reply_to_status_id_str','in_reply_to_user_id_str', 'is_quote_status', 'lang','retweeted',  'truncated', 'place_names', 'place_ids', 'sources','truncated', 'is_quote_status',
-       'user_name','user_id_str', 'user_description','user_created_at','user_location','favorites_counts', 'followers_count', 'friends_count', 
-        'profile_background_color','profile_image_url','profile_background_image_url', 'profile_text_color','profile_use_background_image', 'user_screen_name', 'statuses_count','listed_count',
-       'verified',
-       ]
+    cols_final = [
+        'id_str',
+        'text',
+        'hashtags',
+        'media',                                                                       
+        'symbols',
+        'urls',
+        'user_mentions',
+        # 'created_at',
+        'created_hr',
+        'created_dotw',
+        'calltime',
+        'day',
+        'set',
+        'call',
+        'favorite_count',
+        'retweet_count',
+        'place_names',
+        'place_ids',
+        'sources',
+        'in_reply_to_status_id_str',
+        'in_reply_to_user_id_str',
+        'lang',
+        'is_quote_status',
+        'retweeted',
+        'truncated',
+        'user_id_str',
+        'user_name',
+        'user_description',
+        'user_created_at',
+        'user_location',
+        'favorites_counts',
+        'followers_count',
+        'friends_count',
+        'listed_count',
+        'profile_background_color',
+        # 'profile_background_image_url',
+        'profile_image_url',
+        'profile_text_color',
+        # 'profile_use_background_image',
+        'user_screen_name',
+        'statuses_count',
+        'verified'
+    ]
+
 
     tweets = tweets[cols_final]
 

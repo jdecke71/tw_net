@@ -38,7 +38,7 @@ Tokenize, remove stopwords, word-based filtering
 '''
 def CleanText(dirty_text):
     stops = list(stopwords.words('english'))
-    punct = ['.',"\'",'!','#','$',':','?',',','@','%','&','*',"’",'http']
+    punct = ['.',"\'",'!','#','$',':','?',',','@','%','&','*',';',"’",'#']
     
     wnl = nltk.WordNetLemmatizer()
 
@@ -49,8 +49,10 @@ def CleanText(dirty_text):
         # Add any word based filtering here         
         for word in tokens:
             low_word = word.lower()
-            if low_word not in stops and low_word not in punct:
-#                 clean_line.append(low_word)
+            if low_word[:4] =='http':
+                low_word='' 
+                # print('link') 
+            elif low_word not in stops and low_word not in punct and low_word.isalpha():
                 clean_line.append(wnl.lemmatize(low_word))
         clean_text.append(clean_line)
         
@@ -96,6 +98,18 @@ def ProcessTexts(clean_texts):
     
     return stacks
 
+def MakeGrams(data):
+    clean_texts = CleanText(data['text'].tolist())
+    stacks = ProcessTexts(clean_texts)
+    data['bigrams'] = stacks[0]
+    data['trigrams'] = stacks[1]
+    data['quadgrams'] = stacks[2]
+    data['ch_trigram'] = stacks[3]
+    data['ch_quadgram'] = stacks[4]
+    # Add text features to df and remove text
+
+    return data
+
 '''
 Condense a set of tweets with same id.
 Add Interval data to df and remove unused rows.
@@ -123,17 +137,17 @@ def DetermineInfluenceInterval(data):
                     'favorite_count': .2,
                     'retweet_count': .5,
                     'friends_count': .1,
-                    'followers_count': .1
+                    'followers_count': .1,
                     'statuses_count': .05,
                     'listed_count': .05
                 }
                 influence=0
-                for key,value in weights.items():
-                    tmp_val = tmp.loc[row][key] * value
-                    influence += tmp_val
-                    # print(influence)
-
-                # influence = tmp.loc[row]['favorite_count']+tmp.loc[row]['retweet_count']
+                # for key,value in weights.items():
+                #     tmp_val = tmp.loc[row][key] * value
+                #     influence += int(tmp_val)
+                
+                influence = tmp.loc[row]['favorite_count']+tmp.loc[row]['retweet_count']
+                # print(influence)
 
                 # Set as influencer or delete
                 if influence > max_influence:
@@ -146,7 +160,7 @@ def DetermineInfluenceInterval(data):
     #     print(influence)
     # data['influence']=influences
 
-    # Fix this. Just getting back into same loop. Adds and removes for algo above.
+    # Fix this. Just getting back into same loop. Adds and removes for loop above.
     rows = list(data.index)
     tmp = []
     for row in rows:
@@ -159,6 +173,7 @@ def DetermineInfluenceInterval(data):
 
 def WrapSources(data):
 
+    # Numbers do not coorelat to values
     sources = data['sources']
     unique_sources = set(sources)
     tmp = {}
@@ -188,7 +203,7 @@ def WrapTags(data):
         else:
             tags.append(len(num_tags))
 
-    data['tags'] = tags
+    data['num_tags'] = tags
     data = data.drop(columns=['hashtags'])
     
     return data
@@ -229,30 +244,221 @@ def WrapText(data):
 
     return data
 
+def WrapMedia(data):
+    rows = data.index.tolist()
 
-def GetFeatureSet(data):
+    tags = []
+    for row in rows:
+        num_tags = list(data.loc[row]['media'])
+        if len(num_tags) == 0:
+            tags.append(0)
+        else:
+            tags.append(len(num_tags))
+
+    data['num_media'] = tags
+    data = data.drop(columns=['media'])
     
+    return data
+
+def WrapSymbols(data):
+    rows = data.index.tolist()
+
+    tags = []
+    for row in rows:
+        num_tags = list(data.loc[row]['symbols'])
+        if len(num_tags) == 0:
+            tags.append(0)
+        else:
+            tags.append(len(num_tags))
+
+    data['num_symbols'] = tags
+    data = data.drop(columns=['symbols'])
+    
+    return data
+
+def WrapUrls(data):
+    rows = data.index.tolist()
+
+    tags = []
+    for row in rows:
+        num_tags = list(data.loc[row]['urls'])
+        if len(num_tags) == 0:
+            tags.append(0)
+        else:
+            tags.append(len(num_tags))
+
+    data['num_urls'] = tags
+    data = data.drop(columns=['urls'])
+    
+    return data
+
+def WrapMentions(data):
+    rows = data.index.tolist()
+
+    tags = []
+    for row in rows:
+        num_tags = list(data.loc[row]['user_mentions'])
+        if len(num_tags) == 0:
+            tags.append(0)
+        else:
+            tags.append(len(num_tags))
+
+    data['num_user_mentions'] = tags
+    data = data.drop(columns=['user_mentions'])
+    
+    return data
+
+def WrapVerified(data):
+    rows = data.index.tolist()
+
+    isVerified = []
+    for row in rows:
+        if data.loc[row]['verified'] == True:
+            isVerified.append(1)
+        else:
+            isVerified.append(0)
+
+    data['isVerified'] = isVerified
+    data = data.drop(columns=['verified'])
+ 
+    return data
+
+
+def WrapRetweeted(data):
+    rows = data.index.tolist()
+
+    isRetweeted = []
+    for row in rows:
+        if data.loc[row]['retweeted'] == True:
+            isRetweeted.append(1)
+        else:
+            isRetweeted.append(0)
+
+    data['isRetweeted'] = isRetweeted
+    data = data.drop(columns=['retweeted'])
+ 
+    return data
+
+
+
+def WrapInReplyTo(data):
+    rows = data.index.tolist()
+
+    isReply = []
+    for row in rows:
+        if data.loc[row]['in_reply_to_user_id_str'] != 'None':
+            isReply.append(1)
+        else:
+            isReply.append(0)
+
+    data['isReply'] = isReply
+    data = data.drop(columns=['in_reply_to_user_id_str'])
+
+    return data
+
+def WrapDOTW(data):
+    rows = data.index.tolist()
+
+    day_values = {
+        'Sun':1,
+        'Mon':2,
+        "Tue":3,
+        'Wed':4,
+        'Thu':5,
+        'Fri':6,
+        'Sat':7
+    }
+
+    dotw = []
+    for row in rows:
+        key = data.loc[row]['created_dotw']
+        dotw.append(day_values[key])
+
+    data['dotw'] = dotw
+    data = data.drop(columns=['created_dotw'])
+
+    return data
+
+# Assign values
+def WrapLists(data):
+    # Process rows as needed
+    # Wrap = flatten lists to counts/etc
+    data = WrapTags(data)
+    data = WrapMedia(data)
+    data = WrapSymbols(data)
+    data = WrapUrls(data)
+    data = WrapMentions(data) 
+    data = WrapSources(data)
+    data = WrapVerified(data)
+    data = WrapRetweeted(data)
+    data = WrapInReplyTo(data)
+    data = WrapDOTW(data)
+
+    return data
+
+
+def DropLanguages(data):
+    rows = data.index.tolist()
+    for row in rows:
+        if data.loc[row]['lang'] != 'en':
+            data = data.drop(row)
+
+    data = data.drop(columns='lang')
+    return data
+
+
+# if @ in text add to at_symbols
+# if http or https
+
+
+
+
+def PreviewSet(data):
+
     df_process = DetermineInfluenceInterval(data)
-    # df_process = data.copy()
+
+    # Get unique tweets 
+    # values = data['id_str'].tolist()
+    # vals = set(values)
+    # if len(values) > len(vals):
+    #     df_process = DetermineInfluenceInterval(data)
+    # else:
+    #     df_process = data.copy()
+
+    # Remove non-english tweets
+    df_process = DropLanguages(df_process)
+    df_process = ScanText(df_process)
     
-    # Process each column as needed
+    # Process columns
+    columns = data.columns.tolist()
     for column in columns:
         if column == 'id_str':
             df_process = df_process.rename(columns={'id_str':'tweet_id'})
         elif column == 'text':
-            clean_texts = CleanText(df_process[column].tolist())
-            stacks = ProcessTexts(clean_texts)
-            df_process['bigrams'] = stacks[0]
-            df_process['trigrams'] = stacks[1]
-            df_process['quadgrams'] = stacks[2]
-            df_process['ch_trigram'] = stacks[3]
-            df_process['ch_quadgram'] = stacks[4]
-            # Add text features to df and remove text
-            df_process = df_process.drop(columns=['text'])  
-    
-    # Process rows as needed
-    df_process = WrapTags(df_process) 
-    df_process = WrapText(df_process) 
-    df_process = WrapSources(df_process)      
+            pass
+            df_process = MakeGrams(df_process)
+             
+    # Process rows
+    df_process = WrapLists(df_process) 
+    df_process = df_process.drop(columns=['calltime','day','set'])
+
+    # tmp remove columns as model data
+    tmpCols = ['profile_background_color','profile_image_url','profile_text_color','truncated','user_id_str','user_name','user_description','user_screen_name','user_created_at','user_location', 'favorite_count','retweet_count','is_quote_status','place_names','place_ids','in_reply_to_status_id_str']
+
+    df_process = df_process.drop(columns=tmpCols)
             
     return df_process
+
+
+def GetFeatures(data):
+
+    data = WrapText(data) 
+    data = data.drop(columns=['text','tweet_id']) 
+
+    return data
+
+
+
+
+
+
