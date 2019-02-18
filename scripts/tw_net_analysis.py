@@ -29,18 +29,14 @@ Instructions
 ---------------------
 # PART  1 - Functions for working with tweets in a dataframe.
 
-Use stub and save as new file. Run scripts interactively.
-
 '''
-
-# PART 1 - Functions for working with tweets in a dataframe.
 
 '''
 Call to get dataframe from files
 '''
-def GetDF(day,set_n,call):
-    return StatusToDF(days,sets,calls, clean=True)
-
+def TweetsToDataframe(day,set_n,call,clean=True,useWeights=True,wrapEntities=True):
+    return StatusToDF(days,sets,calls)
+    
 
 '''
 Get all tweet text as list
@@ -135,6 +131,18 @@ def ViewTweet(tweet_id,day,set_n,call=0):
     for status in statuses:
         if tweet_id == status['id_str']:
             return JSON(status)
+
+
+
+def DeleteTweet(day,set_n,id_str):
+    for call_n in range(1,6):
+        filename = GetFileName(day,set_n,call_n)
+        statuses = file_io.ReadJSON(filename)
+        kept_statuses = []
+        for status in statuses:
+            if status['id_str']!= id_str:
+                kept_statuses.append(status)
+        file_io.WriteJSON(kept_statuses,filename)
 
 '''
 View selected user in JSON viewer

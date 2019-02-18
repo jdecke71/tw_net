@@ -37,7 +37,17 @@ def GetTweetIds(filename):
 '''
 Get status as dataframe
 '''
-def StatusToDF(days,sets,calls,clean=True):
+def StatusToDF(days,sets,calls,clean=True,useWeights=True,wrapEntities=True):
+    weights = {
+        'favorite_count': .3,
+        'retweet_count': .6,
+        'friends_count': .01,
+        'followers_count': .04,
+        'statuses_count': .01,
+        'listed_count': .03,
+        'favourites_counts':.01
+    }
+
     # Determine file combos     
     file_combos = []
     for i in days:
@@ -58,7 +68,7 @@ def StatusToDF(days,sets,calls,clean=True):
             status = file_io.ReadJSON(filename)
             filename = '../data/feb'+'/D'+str(day_num)+'/sets.json'
             sets = file_io.ReadJSON(filename)
-            # Add each set attribute             
+            # Add each set attribute  
             for tweet in status:
                 tweet['day'] = day_num
                 tweet['set'] = set_name
@@ -66,6 +76,14 @@ def StatusToDF(days,sets,calls,clean=True):
                 offset = datetime.timedelta(hours=5)
                 time = sets[set_name-1]['call_times'][call_num-1]
                 tweet['calltime'] = time
+                if useWeights == True:
+                    influence_score = (tweet['favorite_count']*weights['favorite_count']) + (tweet['retweet_count']*weights['retweet_count']) + (tweet['user']['friends_count']*weights['friends_count']) + (tweet['user']['followers_count']*weights['followers_count']) + (tweet['user']['statuses_count']*weights['statuses_count']) + (tweet['user']['listed_count']*weights['listed_count']) + (tweet['user']['favourites_count']*weights['favourites_counts'])
+                else:
+                    influence_score = tweet['favorite_count'] + tweet['retweet_count']  
+                    
+                
+                tweet['influence_score'] = influence_score
+
             statusCollection.append(status)
     
     # Load each into dict     
@@ -78,10 +96,13 @@ def StatusToDF(days,sets,calls,clean=True):
 
     # Get sorted df from dicts   
     tweets = pd.DataFrame(status_dict).T
-    tweets = tweets.sort_values(by=['favorite_count','retweet_count'],ascending=False)
+    tweets = tweets.sort_values(by=['influence_score'],ascending=False)
     
     if clean:
         tweets = CleanTweets(tweets)
+
+    if wrapEntities:
+        tweets = WrapEntities(tweets)
 
     return tweets
 
@@ -150,7 +171,7 @@ Return a list tweet ids for all tweets in a flat json file
 '''
 def CleanTweets(tweets):
     # Set initial columns
-    columns = ['created_at', 'entities','favorite_count', 'id_str','in_reply_to_status_id_str','in_reply_to_user_id_str', 'is_quote_status', 'lang', 'place','retweet_count', 'retweeted', 'source', 'text', 'user','truncated','calltime', 'day','set','call']
+    columns = ['created_at', 'entities','favorite_count', 'id_str','in_reply_to_status_id_str','in_reply_to_user_id_str', 'is_quote_status', 'lang', 'place','retweet_count', 'retweeted', 'source', 'text', 'user','truncated','calltime', 'day','set','call','influence_score']
 
     tweets = tweets[columns]
 
@@ -283,11 +304,6 @@ def CleanTweets(tweets):
     tweets['sources'] = source_types
     tweets = tweets.drop(columns= 'source')
 
-
-    '''
-    Count URLS if needed
-    '''
-
     
     '''
     Offset time with utc offset
@@ -309,9 +325,12 @@ def CleanTweets(tweets):
 
         
     tweets['created_time'] = offsets
-    tweets= tweets.drop(columns=['created_at'])  
+    tweets= tweets.drop(columns=['created_at']) 
+
     
-    # set order
+    '''
+    Set order
+    '''
     cols_final = [
         'id_str',
         'text',
@@ -332,6 +351,7 @@ def CleanTweets(tweets):
         'place_names',
         'place_ids',
         'sources',
+        'influence_score',
         'in_reply_to_status_id_str',
         'in_reply_to_user_id_str',
         'lang',
@@ -349,18 +369,18 @@ def CleanTweets(tweets):
         'listed_count',
         'profile_background_color',
         # 'profile_background_image_url',
-        'profile_image_url',
+        # 'profile_image_url',
         'profile_text_color',
         # 'profile_use_background_image',
         'user_screen_name',
         'statuses_count',
         'verified'
     ]
-
-
     tweets = tweets[cols_final]
 
-    # Set datatypes
+    '''
+    Set datatypes
+    '''
     tweets['favorite_count'] = tweets['favorite_count'].astype(int)
     tweets['retweet_count'] = tweets['retweet_count'].astype(int)
     # tweets['calltime'] = tweets['favorite_count'].astype(datetime.datetime)
@@ -368,7 +388,9 @@ def CleanTweets(tweets):
     tweets['friends_count'] = tweets['friends_count'].astype(int)
     tweets['statuses_count'] = tweets['statuses_count'].astype(int)
     tweets['listed_count'] = tweets['listed_count'].astype(int)
-    
+    tweets['influence_score'] = tweets['influence_score'].astype(float)
+    tweets['created_hr'] = tweets['created_hr'].astype(object)
+
     return tweets
 
 

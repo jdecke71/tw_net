@@ -1,3 +1,5 @@
+import random
+
 
 # PART 2 - Functions for working extracting features.
 '''
@@ -35,6 +37,7 @@ def GetCharGrams(text_list,grams):
 
 '''
 Tokenize, remove stopwords, word-based filtering
+
 '''
 def CleanText(dirty_text):
     stops = list(stopwords.words('english'))
@@ -114,59 +117,45 @@ def MakeGrams(data):
 Condense a set of tweets with same id.
 Add Interval data to df and remove unused rows.
 '''
-def DetermineInfluenceInterval(data):
+def DetermineInfluenceInterval(data, isRandom=False):
     MAX_CALLS = 5
         
     ids = set(data['id_str'].tolist())
     # For each unique id, get table 
-    influences = []    
     for tweet_id in ids:
         tmp = data[data['id_str']==tweet_id]
-        tmp.sort_values(by='call')
+        tmp.sort_values(by='call',ascending=True)
         rows = list(tmp.index)
         # Delete all if missing any file
         if len(rows) != MAX_CALLS:
             for row in rows: 
                 data = data.drop(index=row)
+        elif isRandom == True:
+            randIndex = random.randint(0,len(rows)-1)
+            survivor = rows.pop(randIndex)
+            for row in rows:
+                data = data.drop(index=row)
         else:
             # Algorithm for influence goes here
             max_influence = -1
-            max_interval = 0
             for row in rows:
-                weights = {
-                    'favorite_count': .2,
-                    'retweet_count': .5,
-                    'friends_count': .1,
-                    'followers_count': .1,
-                    'statuses_count': .05,
-                    'listed_count': .05
-                }
-                influence=0
-                # for key,value in weights.items():
-                #     tmp_val = tmp.loc[row][key] * value
-                #     influence += int(tmp_val)
+                influence = tmp.loc[row]['influence_score']
                 
-                influence = tmp.loc[row]['favorite_count']+tmp.loc[row]['retweet_count']
-                # print(influence)
-
                 # Set as influencer or delete
                 if influence > max_influence:
                     max_influence = influence
                 else:
                     data = data.drop(index=row)
-            influences.append(max_influence)
 
-    # for influence in influences:
-    #     print(influence)
-    # data['influence']=influences
 
-    # Fix this. Just getting back into same loop. Adds and removes for loop above.
+    # Set inluence interval
     rows = list(data.index)
-    tmp = []
+    intervals = []
     for row in rows:
-        tmp.append(data.loc[row]['call']-1)
+        intervals.append(data.loc[row]['call']-1)
     
-    data['max_interval'] = tmp
+    data['influence_interval'] = intervals
+    data['influence_interval'] = data['influence_interval'].astype(int)
     data = data.drop(columns=['call'])
 
     return data
@@ -379,15 +368,21 @@ def WrapDOTW(data):
 
     return data
 
-# Assign values
-def WrapLists(data):
-    # Process rows as needed
-    # Wrap = flatten lists to counts/etc
+def WrapEntities(data):
     data = WrapTags(data)
     data = WrapMedia(data)
     data = WrapSymbols(data)
     data = WrapUrls(data)
     data = WrapMentions(data) 
+
+    return data
+
+
+# Assign values
+def WrapLists(data):
+    # Process rows as needed
+    # Wrap = flatten lists to counts/etc
+    
     data = WrapSources(data)
     data = WrapVerified(data)
     data = WrapRetweeted(data)
@@ -411,23 +406,11 @@ def DropLanguages(data):
 # if http or https
 
 
+def PreviewFeatureSet(data):
 
-
-def PreviewSet(data):
-
-    df_process = DetermineInfluenceInterval(data)
-
-    # Get unique tweets 
-    # values = data['id_str'].tolist()
-    # vals = set(values)
-    # if len(values) > len(vals):
-    #     df_process = DetermineInfluenceInterval(data)
-    # else:
-    #     df_process = data.copy()
-
-    # Remove non-english tweets
+    if 'influence_interval' not in data.columns.tolist():
+        df_process = DetermineInfluenceInterval(data)
     df_process = DropLanguages(df_process)
-    df_process = ScanText(df_process)
     
     # Process columns
     columns = data.columns.tolist()
@@ -435,22 +418,24 @@ def PreviewSet(data):
         if column == 'id_str':
             df_process = df_process.rename(columns={'id_str':'tweet_id'})
         elif column == 'text':
-            pass
             df_process = MakeGrams(df_process)
              
     # Process rows
     df_process = WrapLists(df_process) 
-    df_process = df_process.drop(columns=['calltime','day','set'])
+
+    # Remove columns that are not features
+    df_process = df_process.drop(columns=['calltime','day','set','user_id_str','user_location','influence_score','favorites_counts', 'followers_count',
+       'friends_count', 'listed_count', 'statuses_count','source'])
 
     # tmp remove columns as model data
-    tmpCols = ['profile_background_color','profile_image_url','profile_text_color','truncated','user_id_str','user_name','user_description','user_screen_name','user_created_at','user_location', 'favorite_count','retweet_count','is_quote_status','place_names','place_ids','in_reply_to_status_id_str']
+    tmpCols = ['profile_background_color','profile_text_color','truncated','user_name','user_description','user_screen_name','user_created_at', 'favorite_count','retweet_count','is_quote_status','place_names','place_ids','in_reply_to_status_id_str']
 
     df_process = df_process.drop(columns=tmpCols)
             
     return df_process
 
 
-def GetFeatures(data):
+def GetFeatureSet(data):
 
     data = WrapText(data) 
     data = data.drop(columns=['text','tweet_id']) 
