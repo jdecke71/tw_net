@@ -24,9 +24,31 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.ensemble import BaggingClassifier
 from sklearn.neighbors import KNeighborsClassifier
 
+from sklearn.naive_bayes import GaussianNB
 
-# Not needed if using numbers. Convert category to number
-# from sklearn.preprocessing import LabelEncoder
-# le = LabelEncoder()
-# le.fit(labels)
-# labels = le.transform(labels)
+
+def GetFeaturesLabels(feats,trgt):
+    features = []
+    
+    df_selected = feats.copy()
+    target = np.asarray(df_selected[trgt])
+    
+    df_features = df_selected.to_dict(orient='records')
+    
+    vec = DictVectorizer()
+    features = vec.fit_transform(df_features).toarray()
+    
+    return features,target
+
+
+def FitAndScore(feats,lbls,classifiers):
+    features_train, features_test, labels_train, labels_test = train_test_split(feats,lbls,test_size=0.20, random_state=42)
+    
+    print('Classifier \t Score')
+    print('------------------------------------')
+    for classifier in classifiers:
+        clf = classifier['classifier_func']
+        clf.fit(features_train, labels_train)
+        print(classifier['classifier_name'],'\t \t',clf.score(features_test, labels_test))
+
+

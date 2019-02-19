@@ -34,8 +34,8 @@ Instructions
 '''
 Call to get dataframe from files
 '''
-def TweetsToDataframe(day,set_n,call,clean=True,useWeights=True,wrapEntities=True):
-    return StatusToDF(days,sets,calls)
+def TweetsToDataframe(day,set_n,call,num_tweets,clean=True,useWeights=True,wrapEntities=True):
+    return StatusToDF(days,sets,calls,num_tweets,clean,useWeights,wrapEntities)
     
 
 '''
@@ -82,7 +82,7 @@ def GetLink(iloc):
 Write df to csv
 '''
 def WriteCSV(data,filename):
-    stub = '../data/'
+    stub = '../data/models/'
     filestring = stub+filename+'.csv'
     with open(filestring,'w') as outfile:
         data.to_csv(outfile)

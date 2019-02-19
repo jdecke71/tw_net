@@ -37,7 +37,7 @@ def GetTweetIds(filename):
 '''
 Get status as dataframe
 '''
-def StatusToDF(days,sets,calls,clean=True,useWeights=True,wrapEntities=True):
+def StatusToDF(days,sets,calls,num_tweets,clean=True,useWeights=True,wrapEntities=True):
     weights = {
         'favorite_count': .3,
         'retweet_count': .6,
@@ -68,7 +68,13 @@ def StatusToDF(days,sets,calls,clean=True,useWeights=True,wrapEntities=True):
             status = file_io.ReadJSON(filename)
             filename = '../data/feb'+'/D'+str(day_num)+'/sets.json'
             sets = file_io.ReadJSON(filename)
-            # Add each set attribute  
+            # Add each set attribute
+            # print(len(status))
+            if num_tweets <= 0:
+                num_tweets = 10
+            elif num_tweets > len(status):
+                num_tweets = len(status)
+            status = status[:num_tweets]
             for tweet in status:
                 tweet['day'] = day_num
                 tweet['set'] = set_name
@@ -96,7 +102,7 @@ def StatusToDF(days,sets,calls,clean=True,useWeights=True,wrapEntities=True):
 
     # Get sorted df from dicts   
     tweets = pd.DataFrame(status_dict).T
-    tweets = tweets.sort_values(by=['influence_score'],ascending=False)
+    # tweets = tweets.sort_values(by=['influence_score'],ascending=False)
     
     if clean:
         tweets = CleanTweets(tweets)
@@ -248,7 +254,7 @@ def CleanTweets(tweets):
         verified.append(user['verified'])     
     
     # Add column to df
-    tweets['user_created_at'] = created_at
+    # tweets['user_created_at'] = created_at
     tweets['user_description'] = description
     tweets['favorites_counts'] = favorites_counts
     tweets['followers_count'] = followers_counts
@@ -327,6 +333,22 @@ def CleanTweets(tweets):
     tweets['created_time'] = offsets
     tweets= tweets.drop(columns=['created_at']) 
 
+    '''
+    Convert user created date to interval
+    '''
+    user_since = []
+    for c_date in created_at:
+        time_obj = datetime.datetime.strptime(c_date,'%a %b %d %H:%M:%S %z %Y')
+        time_now = datetime.date.today()
+        years_delta = time_now.year-time_obj.year
+        month_delta = time_now.month-time_obj.month
+        if month_delta < 0:
+            years_delta -= 1
+        user_since.append(years_delta)
+
+    tweets['user_since'] = user_since
+
+
     
     '''
     Set order
@@ -361,8 +383,9 @@ def CleanTweets(tweets):
         'user_id_str',
         'user_name',
         'user_description',
-        'user_created_at',
+        # 'user_created_at',
         'user_location',
+        'user_since',
         'favorites_counts',
         'followers_count',
         'friends_count',
@@ -390,6 +413,7 @@ def CleanTweets(tweets):
     tweets['listed_count'] = tweets['listed_count'].astype(int)
     tweets['influence_score'] = tweets['influence_score'].astype(float)
     tweets['created_hr'] = tweets['created_hr'].astype(object)
+    tweets['user_since'] = tweets['user_since'].astype(int)
 
     return tweets
 

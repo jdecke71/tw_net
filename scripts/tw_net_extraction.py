@@ -36,33 +36,6 @@ def GetCharGrams(text_list,grams):
 
 
 '''
-Tokenize, remove stopwords, word-based filtering
-
-'''
-def CleanText(dirty_text):
-    stops = list(stopwords.words('english'))
-    punct = ['.',"\'",'!','#','$',':','?',',','@','%','&','*',';',"’",'#']
-    
-    wnl = nltk.WordNetLemmatizer()
-
-    clean_text = []
-    for line in dirty_text:
-        tokens = word_tokenize(line)
-        clean_line = []
-        # Add any word based filtering here         
-        for word in tokens:
-            low_word = word.lower()
-            if low_word[:4] =='http':
-                low_word='' 
-                # print('link') 
-            elif low_word not in stops and low_word not in punct and low_word.isalpha():
-                clean_line.append(wnl.lemmatize(low_word))
-        clean_text.append(clean_line)
-        
-    return clean_text
-
-
-'''
 Create n-grams and char grams clean tokens
 '''
 def ProcessTexts(clean_texts):
@@ -101,6 +74,38 @@ def ProcessTexts(clean_texts):
     
     return stacks
 
+'''
+Tokenize, remove stopwords, word-based filtering
+
+'''
+def CleanText(dirty_text):
+    stops = list(stopwords.words('english'))
+    punct = ['.',"\'",'!','#','$',':','?',',','@','%','&','*',';',"’",'#']
+    
+    wnl = nltk.WordNetLemmatizer()
+
+    clean_text = []
+    for line in dirty_text:
+        if line and line != 'None':
+            tokens = word_tokenize(line)
+            clean_line = []
+            # Add any word based filtering here         
+            for word in tokens:
+                low_word = word.lower()
+                if low_word[:4] =='http':
+                    low_word='' 
+                    # print('link') 
+                elif low_word not in stops and low_word not in punct and low_word.isalpha():
+                    clean_line.append(wnl.lemmatize(low_word))
+            clean_text.append(clean_line)
+        else:
+            clean_text.append(clean_line)    
+        
+    return clean_text
+
+
+
+
 def MakeGrams(data):
     clean_texts = CleanText(data['text'].tolist())
     stacks = ProcessTexts(clean_texts)
@@ -109,54 +114,30 @@ def MakeGrams(data):
     data['quadgrams'] = stacks[2]
     data['ch_trigram'] = stacks[3]
     data['ch_quadgram'] = stacks[4]
-    # Add text features to df and remove text
 
     return data
 
-'''
-Condense a set of tweets with same id.
-Add Interval data to df and remove unused rows.
-'''
-def DetermineInfluenceInterval(data, isRandom=False):
-    MAX_CALLS = 5
-        
-    ids = set(data['id_str'].tolist())
-    # For each unique id, get table 
-    for tweet_id in ids:
-        tmp = data[data['id_str']==tweet_id]
-        tmp.sort_values(by='call',ascending=True)
-        rows = list(tmp.index)
-        # Delete all if missing any file
-        if len(rows) != MAX_CALLS:
-            for row in rows: 
-                data = data.drop(index=row)
-        elif isRandom == True:
-            randIndex = random.randint(0,len(rows)-1)
-            survivor = rows.pop(randIndex)
-            for row in rows:
-                data = data.drop(index=row)
-        else:
-            # Algorithm for influence goes here
-            max_influence = -1
-            for row in rows:
-                influence = tmp.loc[row]['influence_score']
-                
-                # Set as influencer or delete
-                if influence > max_influence:
-                    max_influence = influence
-                else:
-                    data = data.drop(index=row)
+def MakeUserGrams(data):
+    columns = ['user_description']
 
+    for column in columns:
+        clean_texts = CleanText(data[column].tolist())
+        stacks = ProcessTexts(clean_texts)
 
-    # Set inluence interval
-    rows = list(data.index)
-    intervals = []
-    for row in rows:
-        intervals.append(data.loc[row]['call']-1)
-    
-    data['influence_interval'] = intervals
-    data['influence_interval'] = data['influence_interval'].astype(int)
-    data = data.drop(columns=['call'])
+        col = 'bigrams_' + column
+        data[col] = stacks[0]
+
+        col = 'trigrams_' + column
+        data[col] = stacks[1]
+
+        col = 'quadgrams_' + column
+        data[col] = stacks[2]
+
+        col = 'ch_trigram_' + column
+        data[col] = stacks[3]
+
+        col = 'ch_quadgram_' + column
+        data[col] = stacks[4]
 
     return data
 
@@ -198,7 +179,14 @@ def WrapTags(data):
     return data
 
 def WrapText(data):
-    allgrams = ['bigrams','trigrams','quadgrams','ch_trigram','ch_quadgram']
+    allgrams = ['bigrams','trigrams','quadgrams','ch_trigram','ch_quadgram',
+       'bigrams_user_description', 'trigrams_user_description','quadgrams_user_description', 'ch_trigram_user_description','ch_quadgram_user_description']
+
+       # , 'bigrams_user_screen_name',
+       # 'trigrams_user_screen_name', 'quadgrams_user_screen_name',
+       # 'ch_trigram_user_screen_name', 'ch_quadgram_user_screen_name','bigrams_user_name', 'trigrams_user_name', 'quadgrams_user_name',
+       # 'ch_trigram_user_name', 'ch_quadgram_user_name',
+
     rows = data.index.tolist()
     for row in rows:
         count = 0
@@ -385,7 +373,7 @@ def WrapLists(data):
     
     data = WrapSources(data)
     data = WrapVerified(data)
-    data = WrapRetweeted(data)
+    # data = WrapRetweeted(data)
     data = WrapInReplyTo(data)
     data = WrapDOTW(data)
 
@@ -395,21 +383,72 @@ def WrapLists(data):
 def DropLanguages(data):
     rows = data.index.tolist()
     for row in rows:
-        if data.loc[row]['lang'] != 'en':
+        if not data.loc[row]['lang'] or data.loc[row]['lang'] != 'en':
             data = data.drop(row)
 
     data = data.drop(columns='lang')
     return data
 
 
-# if @ in text add to at_symbols
-# if http or https
+'''
+Condense a set of tweets with same id.
+Add Interval data to df and remove unused rows.
+'''
+def DetermineInfluenceInterval(data, isRandom=False):
+    MAX_CALLS = 5
+        
+    ids = set(data['id_str'].tolist())
+    data = data.sort_values(by=['influence_score'],ascending=False)
+
+    # For each unique id, get table 
+    for tweet_id in ids:
+        tmp = data[data['id_str']==tweet_id]
+        tmp.sort_values(by='call',ascending=True)
+        rows = list(tmp.index)
+        # Delete all if missing any file
+        if len(rows) != MAX_CALLS:
+            # print('Not enough rows.')
+            for row in rows: 
+                data = data.drop(index=row)
+        elif isRandom == True:
+            # get random index
+            randIndex = random.randint(0,len(rows)-1)
+            survivor = rows.pop(randIndex)
+            for row in rows:
+                if row != survivor:
+                    data = data.drop(index=row)
+        else:
+            # Algorithm for influence goes here
+            max_influence = -1
+            # print('Deleting non-inluential.')
+            for row in rows:
+                influence = tmp.loc[row]['influence_score']
+                
+                # Set as influencer or delete
+                if influence > max_influence:
+                    max_influence = influence
+                else:
+                    data = data.drop(index=row)
+
+    # Set inluence interval
+    rows = list(data.index)
+    intervals = []
+    for row in rows:
+        intervals.append(data.loc[row]['call']-1)
+    
+    data['influence_interval'] = intervals
+    data['influence_interval'] = data['influence_interval'].astype(int)
+    data = data.drop(columns=['call'])
+
+    return data
 
 
-def PreviewFeatureSet(data):
+def PreviewFeatureSet(data,isRandom=False):
 
+    # print('Length of index',len(data.index.tolist()))
     if 'influence_interval' not in data.columns.tolist():
-        df_process = DetermineInfluenceInterval(data)
+        df_process = DetermineInfluenceInterval(data,isRandom)
+    # print('Length of index',len(df_process.index.tolist()))
     df_process = DropLanguages(df_process)
     
     # Process columns
@@ -419,6 +458,9 @@ def PreviewFeatureSet(data):
             df_process = df_process.rename(columns={'id_str':'tweet_id'})
         elif column == 'text':
             df_process = MakeGrams(df_process)
+        elif column == 'user_description':
+            df_process = MakeUserGrams(df_process)
+
              
     # Process rows
     df_process = WrapLists(df_process) 
@@ -428,7 +470,7 @@ def PreviewFeatureSet(data):
        'friends_count', 'listed_count', 'statuses_count','source'])
 
     # tmp remove columns as model data
-    tmpCols = ['profile_background_color','profile_text_color','truncated','user_name','user_description','user_screen_name','user_created_at', 'favorite_count','retweet_count','is_quote_status','place_names','place_ids','in_reply_to_status_id_str']
+    tmpCols = ['profile_background_color','profile_text_color','truncated','user_name','user_screen_name', 'favorite_count','retweet_count','is_quote_status','place_names','place_ids','in_reply_to_status_id_str','retweeted']
 
     df_process = df_process.drop(columns=tmpCols)
             
@@ -438,7 +480,7 @@ def PreviewFeatureSet(data):
 def GetFeatureSet(data):
 
     data = WrapText(data) 
-    data = data.drop(columns=['text','tweet_id']) 
+    data = data.drop(columns=['text','tweet_id','user_description']) 
 
     return data
 
