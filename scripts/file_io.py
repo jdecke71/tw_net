@@ -1,6 +1,8 @@
 import json
 import sys
 
+import pandas as pd
+
 '''
 Write json to file
 '''
@@ -23,3 +25,24 @@ def ReadJSON(filename):
     except Exception as e: 
         obj = [] 
     return obj
+
+
+'''
+Write df to csv
+'''
+def WriteCSV(data,filename):
+    stub = '../data/models/'
+    filestring = stub+filename+'.csv'
+    with open(filestring,'w') as outfile:
+        data.to_csv(outfile)
+
+'''
+Read csv to df
+'''
+def ReadCSV(filename):
+    stub = '../data/models/'
+    filestring = stub+filename+'.csv'
+    print('filename:',filestring)
+    featureSet = pd.read_csv(filestring,index_col='Unnamed: 0')
+    
+    return featureSet

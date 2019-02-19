@@ -79,16 +79,6 @@ def GetLink(iloc):
 
 
 '''
-Write df to csv
-'''
-def WriteCSV(data,filename):
-    stub = '../data/models/'
-    filestring = stub+filename+'.csv'
-    with open(filestring,'w') as outfile:
-        data.to_csv(outfile)
-
-
-'''
 View available tweets for day/set/call combo. Needs a UI.
 '''
 def GetCombinations(days):
