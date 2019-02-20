@@ -59,18 +59,19 @@ def ProcessTexts(clean_texts):
     trigrams = wordgrams[1]
     quadgrams = wordgrams[2]
 
-    chargrams = []
-    for gram in c_grams:
-        tmp = []
-        for clean_text in clean_texts:
-            char_gram = GetCharGrams(clean_text,gram)
-            tmp.append(char_gram)
-        chargrams.append(tmp)
+    # chargrams = []
+    # for gram in c_grams:
+    #     tmp = []
+    #     for clean_text in clean_texts:
+    #         char_gram = GetCharGrams(clean_text,gram)
+    #         tmp.append(char_gram)
+    #     chargrams.append(tmp)
 
-    chgram_3 = chargrams[0]
-    chgram_4 = chargrams[1]
+    # chgram_3 = chargrams[0]
+    # chgram_4 = chargrams[1]
 
-    stacks = [bigrams,trigrams,quadgrams,chgram_3,chgram_4]
+    stacks = [bigrams,trigrams,quadgrams]
+    # ,chgram_3,chgram_4
     
     return stacks
 
@@ -112,8 +113,8 @@ def MakeGrams(data):
     data['bigrams'] = stacks[0]
     data['trigrams'] = stacks[1]
     data['quadgrams'] = stacks[2]
-    data['ch_trigram'] = stacks[3]
-    data['ch_quadgram'] = stacks[4]
+    # data['ch_trigram'] = stacks[3]
+    # data['ch_quadgram'] = stacks[4]
 
     return data
 
@@ -133,11 +134,11 @@ def MakeUserGrams(data):
         col = 'quadgrams_' + column
         data[col] = stacks[2]
 
-        col = 'ch_trigram_' + column
-        data[col] = stacks[3]
+        # col = 'ch_trigram_' + column
+        # data[col] = stacks[3]
 
-        col = 'ch_quadgram_' + column
-        data[col] = stacks[4]
+        # col = 'ch_quadgram_' + column
+        # data[col] = stacks[4]
 
     return data
 
@@ -179,8 +180,9 @@ def WrapTags(data):
     return data
 
 def WrapText(data):
-    allgrams = ['bigrams','trigrams','quadgrams','ch_trigram','ch_quadgram',
-       'bigrams_user_description', 'trigrams_user_description','quadgrams_user_description', 'ch_trigram_user_description','ch_quadgram_user_description']
+    allgrams = ['bigrams','trigrams','quadgrams','bigrams_user_description', 'trigrams_user_description','quadgrams_user_description']
+
+       # 'ch_trigram','ch_quadgram', 'ch_trigram_user_description','ch_quadgram_user_description'
 
        # , 'bigrams_user_screen_name',
        # 'trigrams_user_screen_name', 'quadgrams_user_screen_name',
@@ -306,7 +308,7 @@ def WrapRetweeted(data):
 
     isRetweeted = []
     for row in rows:
-        if data.loc[row]['retweeted'] == True:
+        if data.loc[row]['retweet_count'] > 0 :
             isRetweeted.append(1)
         else:
             isRetweeted.append(0)
@@ -323,7 +325,7 @@ def WrapInReplyTo(data):
 
     isReply = []
     for row in rows:
-        if data.loc[row]['in_reply_to_user_id_str'] != 'None':
+        if data.loc[row]['in_reply_to_user_id_str']:
             isReply.append(1)
         else:
             isReply.append(0)
@@ -373,7 +375,7 @@ def WrapLists(data):
     
     data = WrapSources(data)
     data = WrapVerified(data)
-    # data = WrapRetweeted(data)
+    data = WrapRetweeted(data)
     data = WrapInReplyTo(data)
     data = WrapDOTW(data)
 
@@ -457,20 +459,22 @@ def PreviewFeatureSet(data,isRandom=False):
         if column == 'id_str':
             df_process = df_process.rename(columns={'id_str':'tweet_id'})
         elif column == 'text':
-            df_process = MakeGrams(df_process)
+            pass
+            # df_process = MakeGrams(df_process)
         elif column == 'user_description':
-            df_process = MakeUserGrams(df_process)
+            pass
+            # df_process = MakeUserGrams(df_process)
 
              
     # Process rows
     df_process = WrapLists(df_process) 
 
     # Remove columns that are not features
-    df_process = df_process.drop(columns=['calltime','day','set','user_id_str','user_location','influence_score','favorites_counts', 'followers_count',
+    df_process = df_process.drop(columns=['calltime','day','user_id_str','user_location','influence_score','favorites_counts', 'followers_count',
        'friends_count', 'listed_count', 'statuses_count','source'])
 
     # tmp remove columns as model data
-    tmpCols = ['profile_background_color','profile_text_color','truncated','user_name','user_screen_name', 'favorite_count','retweet_count','is_quote_status','place_names','place_ids','in_reply_to_status_id_str','retweeted']
+    tmpCols = ['profile_background_color','profile_text_color','truncated','user_name','user_screen_name','is_quote_status','place_names','place_ids','in_reply_to_status_id_str','created_hr']
 
     df_process = df_process.drop(columns=tmpCols)
             
@@ -479,8 +483,8 @@ def PreviewFeatureSet(data,isRandom=False):
 
 def GetFeatureSet(data):
 
-    data = WrapText(data) 
-    data = data.drop(columns=['text','tweet_id','user_description']) 
+    # data = WrapText(data) 
+    data = data.drop(columns=['text','tweet_id','user_description','retweet_count','favorite_count']) 
 
     return data
 
