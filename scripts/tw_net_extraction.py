@@ -470,11 +470,10 @@ def PreviewFeatureSet(data,isRandom=False):
     df_process = WrapLists(df_process) 
 
     # Remove columns that are not features
-    df_process = df_process.drop(columns=['calltime','day','user_id_str','user_location','influence_score','favorites_counts', 'followers_count',
-       'friends_count', 'listed_count', 'statuses_count','source'])
+    df_process = df_process.drop(columns=['calltime','day','user_id_str','user_location','source'])
 
     # tmp remove columns as model data
-    tmpCols = ['profile_background_color','profile_text_color','truncated','user_name','user_screen_name','is_quote_status','place_names','place_ids','in_reply_to_status_id_str','created_hr']
+    tmpCols = ['profile_background_color','profile_text_color','truncated','user_name','user_screen_name','is_quote_status','place_names','place_ids','in_reply_to_status_id_str']
 
     df_process = df_process.drop(columns=tmpCols)
             
@@ -484,7 +483,29 @@ def PreviewFeatureSet(data,isRandom=False):
 def GetFeatureSet(data):
 
     # data = WrapText(data) 
-    data = data.drop(columns=['text','tweet_id','user_description','retweet_count','favorite_count']) 
+    data = data.drop(columns=['text','tweet_id','user_description', 'statuses_count','favorites_counts', 'friends_count']) 
+
+    return data
+
+
+# This is to test new tweets
+# Read set 0 tweets from week 2
+def ReadTestTweets(data):
+
+    data = DropLanguages(data)
+
+    # Process rows
+    data = WrapLists(data) 
+
+    # Remove columns that are not features
+    data = data.drop(columns=['calltime','day','user_id_str','user_location','source'])
+
+    data = data.drop(columns=['text','id_str','user_description','favorite_count', 'retweet_count','listed_count', 'statuses_count']) 
+
+    # tmp remove columns as model data
+    tmpCols = ['profile_background_color','profile_text_color','truncated','user_name','user_screen_name','is_quote_status','place_names','place_ids','in_reply_to_status_id_str']
+
+    data = data.drop(columns=tmpCols)
 
     return data
 

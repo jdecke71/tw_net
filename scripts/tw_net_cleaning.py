@@ -41,11 +41,11 @@ def StatusToDF(days,sets,calls,num_tweets,clean=True,useWeights=True,wrapEntitie
     weights = {
         'favorite_count': .3,
         'retweet_count': .6,
-        'friends_count': .01,
-        'followers_count': .04,
-        'statuses_count': .01,
-        'listed_count': .03,
-        'favourites_counts':.01
+        # 'friends_count': .01,
+        'followers_count': .025,
+        # 'statuses_count': .01,
+        'listed_count': .075,
+        # 'favourites_counts':.01
     }
 
     # Determine file combos     
@@ -83,7 +83,7 @@ def StatusToDF(days,sets,calls,num_tweets,clean=True,useWeights=True,wrapEntitie
                 time = sets[set_name-1]['call_times'][call_num-1]
                 tweet['calltime'] = time
                 if useWeights == True:
-                    influence_score = (tweet['favorite_count']*weights['favorite_count']) + (tweet['retweet_count']*weights['retweet_count']) + (tweet['user']['friends_count']*weights['friends_count']) + (tweet['user']['followers_count']*weights['followers_count']) + (tweet['user']['statuses_count']*weights['statuses_count']) + (tweet['user']['listed_count']*weights['listed_count']) + (tweet['user']['favourites_count']*weights['favourites_counts'])
+                    influence_score = (tweet['favorite_count']*weights['favorite_count']) + (tweet['retweet_count']*weights['retweet_count']) + (tweet['user']['followers_count']*weights['followers_count']) + (tweet['user']['listed_count']*weights['listed_count']) 
                 else:
                     influence_score = tweet['favorite_count'] + tweet['retweet_count']  
                     
