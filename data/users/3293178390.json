@@ -1,0 +1,135 @@
+{
+    "contributors_enabled": false,
+    "created_at": "Sat Jul 25 17:31:55 +0000 2015",
+    "default_profile": true,
+    "default_profile_image": false,
+    "description": "Driving around making deliveries of stuff to people around the country. I have a lot of time to let my mind wander. That's rarely a good thing.",
+    "entities": {
+        "description": {
+            "urls": []
+        },
+        "url": {
+            "urls": [
+                {
+                    "display_url": "myspace.com/junkbox_jim",
+                    "expanded_url": "https://myspace.com/junkbox_jim",
+                    "indices": [
+                        0,
+                        23
+                    ],
+                    "url": "https://t.co/s0Y6BOebmu"
+                }
+            ]
+        }
+    },
+    "favourites_count": 190463,
+    "follow_request_sent": false,
+    "followers_count": 2583,
+    "following": false,
+    "friends_count": 3405,
+    "geo_enabled": true,
+    "has_extended_profile": true,
+    "id": 3293178390,
+    "id_str": "3293178390",
+    "is_translation_enabled": false,
+    "is_translator": false,
+    "lang": "en",
+    "listed_count": 83,
+    "location": "Contiguous USA and Canada",
+    "name": "Jim'sJunkBox",
+    "notifications": false,
+    "profile_background_color": "C0DEED",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile": false,
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/3293178390/1448074503",
+    "profile_image_url": "http://pbs.twimg.com/profile_images/1037149241267904512/VX-Argb2_normal.jpg",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1037149241267904512/VX-Argb2_normal.jpg",
+    "profile_link_color": "1DA1F2",
+    "profile_location": null,
+    "profile_sidebar_border_color": "C0DEED",
+    "profile_sidebar_fill_color": "DDEEF6",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "protected": false,
+    "screen_name": "JamesIsaak2",
+    "status": {
+        "contributors": null,
+        "coordinates": null,
+        "created_at": "Sun Feb 24 01:13:39 +0000 2019",
+        "entities": {
+            "hashtags": [],
+            "symbols": [],
+            "urls": [],
+            "user_mentions": [
+                {
+                    "id": 29465136,
+                    "id_str": "29465136",
+                    "indices": [
+                        0,
+                        9
+                    ],
+                    "name": "Mediaite",
+                    "screen_name": "Mediaite"
+                }
+            ]
+        },
+        "favorite_count": 0,
+        "favorited": false,
+        "geo": null,
+        "id": 1099477421068292106,
+        "id_str": "1099477421068292106",
+        "in_reply_to_screen_name": "Mediaite",
+        "in_reply_to_status_id": 1099337069703376896,
+        "in_reply_to_status_id_str": "1099337069703376896",
+        "in_reply_to_user_id": 29465136,
+        "in_reply_to_user_id_str": "29465136",
+        "is_quote_status": false,
+        "lang": "en",
+        "place": {
+            "attributes": {},
+            "bounding_box": {
+                "coordinates": [
+                    [
+                        [
+                            -92.282745,
+                            46.650616
+                        ],
+                        [
+                            -91.9629349,
+                            46.650616
+                        ],
+                        [
+                            -91.9629349,
+                            46.8660532
+                        ],
+                        [
+                            -92.282745,
+                            46.8660532
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "contained_within": [],
+            "country": "United States",
+            "country_code": "US",
+            "full_name": "Duluth, MN",
+            "id": "62619a76134ad05e",
+            "name": "Duluth",
+            "place_type": "city",
+            "url": "https://api.twitter.com/1.1/geo/id/62619a76134ad05e.json"
+        },
+        "retweet_count": 0,
+        "retweeted": false,
+        "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+        "text": "@Mediaite \u2018He\u2019s not even black!\u2019",
+        "truncated": false
+    },
+    "statuses_count": 218354,
+    "time_zone": null,
+    "translator_type": "none",
+    "url": "https://t.co/s0Y6BOebmu",
+    "utc_offset": null,
+    "verified": false
+}

@@ -1,4 +1,5 @@
 import random
+from nltk.stem import PorterStemmer
 
 
 # PART 2 - Functions for working extracting features.
@@ -84,6 +85,8 @@ def CleanText(dirty_text):
     punct = ['.',"\'",'!','#','$',':','?',',','@','%','&','*',';',"’",'#']
     
     wnl = nltk.WordNetLemmatizer()
+    ps = PorterStemmer()
+
 
     clean_text = []
     for line in dirty_text:
@@ -460,10 +463,10 @@ def PreviewFeatureSet(data,isRandom=False):
             df_process = df_process.rename(columns={'id_str':'tweet_id'})
         elif column == 'text':
             pass
-            # df_process = MakeGrams(df_process)
+            df_process = MakeGrams(df_process)
         elif column == 'user_description':
             pass
-            # df_process = MakeUserGrams(df_process)
+            df_process = MakeUserGrams(df_process)
 
              
     # Process rows
@@ -482,7 +485,7 @@ def PreviewFeatureSet(data,isRandom=False):
 
 def GetFeatureSet(data):
 
-    # data = WrapText(data) 
+    data = WrapText(data) 
     data = data.drop(columns=['text','tweet_id','user_description', 'statuses_count','favorites_counts', 'friends_count']) 
 
     return data

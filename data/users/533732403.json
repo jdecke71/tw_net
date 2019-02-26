@@ -1,0 +1,158 @@
+{
+    "contributors_enabled": false,
+    "created_at": "Thu Mar 22 23:46:25 +0000 2012",
+    "default_profile": false,
+    "default_profile_image": false,
+    "description": "News, Reviews, and Local Support for the Erie area related to the world of Craft Beer.  Content is for those over 21 years old.",
+    "entities": {
+        "description": {
+            "urls": []
+        },
+        "url": {
+            "urls": [
+                {
+                    "display_url": "eriebetterbeer.com",
+                    "expanded_url": "http://eriebetterbeer.com",
+                    "indices": [
+                        0,
+                        22
+                    ],
+                    "url": "http://t.co/yoFqfuVvrv"
+                }
+            ]
+        }
+    },
+    "favourites_count": 99,
+    "follow_request_sent": false,
+    "followers_count": 1345,
+    "following": false,
+    "friends_count": 1851,
+    "geo_enabled": true,
+    "has_extended_profile": false,
+    "id": 533732403,
+    "id_str": "533732403",
+    "is_translation_enabled": false,
+    "is_translator": false,
+    "lang": "en",
+    "listed_count": 48,
+    "location": "Erie, PA",
+    "name": "Better Beer Bureau",
+    "notifications": false,
+    "profile_background_color": "C0DEED",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile": true,
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/533732403/1398245054",
+    "profile_image_url": "http://pbs.twimg.com/profile_images/2160248855/BBBnewlogo1transcen_normal.PNG",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/2160248855/BBBnewlogo1transcen_normal.PNG",
+    "profile_link_color": "0084B4",
+    "profile_location": null,
+    "profile_sidebar_border_color": "C0DEED",
+    "profile_sidebar_fill_color": "DDEEF6",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "protected": false,
+    "screen_name": "ErieBetterBeer",
+    "status": {
+        "contributors": null,
+        "coordinates": {
+            "coordinates": [
+                -80.1253,
+                42.0753
+            ],
+            "type": "Point"
+        },
+        "created_at": "Sat Feb 23 15:34:03 +0000 2019",
+        "entities": {
+            "hashtags": [],
+            "symbols": [],
+            "urls": [
+                {
+                    "display_url": "twitter.com/i/web/status/1\u2026",
+                    "expanded_url": "https://twitter.com/i/web/status/1099331561240121345",
+                    "indices": [
+                        116,
+                        139
+                    ],
+                    "url": "https://t.co/rbN3vveSAE"
+                }
+            ],
+            "user_mentions": [
+                {
+                    "id": 1116752935,
+                    "id_str": "1116752935",
+                    "indices": [
+                        91,
+                        104
+                    ],
+                    "name": "OtherHalfBrewing",
+                    "screen_name": "OtherHalfNYC"
+                }
+            ]
+        },
+        "favorite_count": 0,
+        "favorited": false,
+        "geo": {
+            "coordinates": [
+                42.0753,
+                -80.1253
+            ],
+            "type": "Point"
+        },
+        "id": 1099331561240121345,
+        "id_str": "1099331561240121345",
+        "in_reply_to_screen_name": null,
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": null,
+        "in_reply_to_user_id_str": null,
+        "is_quote_status": false,
+        "lang": "en",
+        "place": {
+            "attributes": {},
+            "bounding_box": {
+                "coordinates": [
+                    [
+                        [
+                            -80.239991,
+                            42.018414
+                        ],
+                        [
+                            -79.934073,
+                            42.018414
+                        ],
+                        [
+                            -79.934073,
+                            42.202992
+                        ],
+                        [
+                            -80.239991,
+                            42.202992
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "contained_within": [],
+            "country": "United States",
+            "country_code": "US",
+            "full_name": "Erie, PA",
+            "id": "29aaa88d9fe74b50",
+            "name": "Erie",
+            "place_type": "city",
+            "url": "https://api.twitter.com/1.1/geo/id/29aaa88d9fe74b50.json"
+        },
+        "possibly_sensitive": false,
+        "retweet_count": 0,
+        "retweeted": false,
+        "source": "<a href=\"https://untappd.com\" rel=\"nofollow\">Untappd</a>",
+        "text": "Doesn't drink like a 10%er.....thanks Steve! - Drinking an 5th Anniversary Imperial IPA by @OtherHalfNYC @ Morey's\u2026 https://t.co/rbN3vveSAE",
+        "truncated": true
+    },
+    "statuses_count": 18792,
+    "time_zone": null,
+    "translator_type": "none",
+    "url": "http://t.co/yoFqfuVvrv",
+    "utc_offset": null,
+    "verified": false
+}

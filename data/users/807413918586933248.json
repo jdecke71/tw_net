@@ -1,0 +1,122 @@
+{
+    "contributors_enabled": false,
+    "created_at": "Sat Dec 10 02:37:34 +0000 2016",
+    "default_profile": true,
+    "default_profile_image": false,
+    "description": "#FBR #Resist I can be mean as f$ck, sweet as candy, cold as winter or loyal like a soldier. It all depends on you. Caregiver and Cleveland \ud83c\udfc8 Browns fan",
+    "entities": {
+        "description": {
+            "urls": []
+        }
+    },
+    "favourites_count": 53406,
+    "follow_request_sent": false,
+    "followers_count": 4866,
+    "following": false,
+    "friends_count": 4625,
+    "geo_enabled": true,
+    "has_extended_profile": false,
+    "id": 807413918586933248,
+    "id_str": "807413918586933248",
+    "is_translation_enabled": false,
+    "is_translator": false,
+    "lang": "en",
+    "listed_count": 14,
+    "location": "Pennsylvania, USA",
+    "name": "MissMelissa",
+    "notifications": false,
+    "profile_background_color": "F5F8FA",
+    "profile_background_image_url": null,
+    "profile_background_image_url_https": null,
+    "profile_background_tile": false,
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/807413918586933248/1548014993",
+    "profile_image_url": "http://pbs.twimg.com/profile_images/1039483687400886279/ZGvxi_Jr_normal.jpg",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1039483687400886279/ZGvxi_Jr_normal.jpg",
+    "profile_link_color": "1DA1F2",
+    "profile_location": null,
+    "profile_sidebar_border_color": "C0DEED",
+    "profile_sidebar_fill_color": "DDEEF6",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "protected": false,
+    "screen_name": "MissMelissaST",
+    "status": {
+        "contributors": null,
+        "coordinates": null,
+        "created_at": "Sat Feb 23 15:18:05 +0000 2019",
+        "entities": {
+            "hashtags": [],
+            "symbols": [],
+            "urls": [],
+            "user_mentions": [
+                {
+                    "id": 16225955,
+                    "id_str": "16225955",
+                    "indices": [
+                        0,
+                        12
+                    ],
+                    "name": "cowboytexas\ud83c\uddfa\ud83c\uddf8\ud83c\udf0a",
+                    "screen_name": "cowboytexas"
+                }
+            ]
+        },
+        "favorite_count": 2,
+        "favorited": false,
+        "geo": null,
+        "id": 1099327543721775105,
+        "id_str": "1099327543721775105",
+        "in_reply_to_screen_name": "cowboytexas",
+        "in_reply_to_status_id": 1099326872796741634,
+        "in_reply_to_status_id_str": "1099326872796741634",
+        "in_reply_to_user_id": 16225955,
+        "in_reply_to_user_id_str": "16225955",
+        "is_quote_status": false,
+        "lang": "und",
+        "place": {
+            "attributes": {},
+            "bounding_box": {
+                "coordinates": [
+                    [
+                        [
+                            -80.239991,
+                            42.018414
+                        ],
+                        [
+                            -79.934073,
+                            42.018414
+                        ],
+                        [
+                            -79.934073,
+                            42.202992
+                        ],
+                        [
+                            -80.239991,
+                            42.202992
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "contained_within": [],
+            "country": "United States",
+            "country_code": "US",
+            "full_name": "Erie, PA",
+            "id": "29aaa88d9fe74b50",
+            "name": "Erie",
+            "place_type": "city",
+            "url": "https://api.twitter.com/1.1/geo/id/29aaa88d9fe74b50.json"
+        },
+        "retweet_count": 0,
+        "retweeted": false,
+        "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+        "text": "@cowboytexas Hmmm, \ud83e\udd14",
+        "truncated": false
+    },
+    "statuses_count": 44632,
+    "time_zone": null,
+    "translator_type": "none",
+    "url": null,
+    "utc_offset": null,
+    "verified": false
+}

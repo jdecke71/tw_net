@@ -1,0 +1,250 @@
+{
+    "contributors_enabled": false,
+    "created_at": "Wed Mar 02 19:32:42 +0000 2011",
+    "default_profile": false,
+    "default_profile_image": false,
+    "description": "| Creative Director, @KRUClothing | EIC @divineminds | 814 | GU |",
+    "entities": {
+        "description": {
+            "urls": []
+        },
+        "url": {
+            "urls": [
+                {
+                    "display_url": "kruclothing.com/collections/kr\u2026",
+                    "expanded_url": "https://www.kruclothing.com/collections/kru-fall-winter-2018",
+                    "indices": [
+                        0,
+                        23
+                    ],
+                    "url": "https://t.co/IN0rWmqoWV"
+                }
+            ]
+        }
+    },
+    "favourites_count": 89799,
+    "follow_request_sent": false,
+    "followers_count": 1927,
+    "following": false,
+    "friends_count": 795,
+    "geo_enabled": true,
+    "has_extended_profile": true,
+    "id": 259872649,
+    "id_str": "259872649",
+    "is_translation_enabled": false,
+    "is_translator": false,
+    "lang": "en",
+    "listed_count": 17,
+    "location": "",
+    "name": "Grant",
+    "notifications": false,
+    "profile_background_color": "EDF500",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile": true,
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/259872649/1544574629",
+    "profile_image_url": "http://pbs.twimg.com/profile_images/1080502460748390403/1kx7ucB__normal.jpg",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1080502460748390403/1kx7ucB__normal.jpg",
+    "profile_link_color": "1A8F00",
+    "profile_location": null,
+    "profile_sidebar_border_color": "C0DEED",
+    "profile_sidebar_fill_color": "DDEEF6",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "protected": false,
+    "screen_name": "grant_kru",
+    "status": {
+        "contributors": null,
+        "coordinates": null,
+        "created_at": "Mon Feb 25 00:05:37 +0000 2019",
+        "entities": {
+            "hashtags": [],
+            "media": [
+                {
+                    "display_url": "pic.twitter.com/bGy1hIZid1",
+                    "expanded_url": "https://twitter.com/grant_kru/status/1099822690091843586/photo/1",
+                    "id": 1099822685314600962,
+                    "id_str": "1099822685314600962",
+                    "indices": [
+                        72,
+                        95
+                    ],
+                    "media_url": "http://pbs.twimg.com/media/D0Na57oX0AIXonP.jpg",
+                    "media_url_https": "https://pbs.twimg.com/media/D0Na57oX0AIXonP.jpg",
+                    "sizes": {
+                        "large": {
+                            "h": 2000,
+                            "resize": "fit",
+                            "w": 1300
+                        },
+                        "medium": {
+                            "h": 1200,
+                            "resize": "fit",
+                            "w": 780
+                        },
+                        "small": {
+                            "h": 680,
+                            "resize": "fit",
+                            "w": 442
+                        },
+                        "thumb": {
+                            "h": 150,
+                            "resize": "crop",
+                            "w": 150
+                        }
+                    },
+                    "type": "photo",
+                    "url": "https://t.co/bGy1hIZid1"
+                }
+            ],
+            "symbols": [],
+            "urls": [],
+            "user_mentions": [
+                {
+                    "id": 1084090004220100608,
+                    "id_str": "1084090004220100608",
+                    "indices": [
+                        10,
+                        24
+                    ],
+                    "name": "10cellphones",
+                    "screen_name": "10cellphones_"
+                }
+            ]
+        },
+        "extended_entities": {
+            "media": [
+                {
+                    "display_url": "pic.twitter.com/bGy1hIZid1",
+                    "expanded_url": "https://twitter.com/grant_kru/status/1099822690091843586/photo/1",
+                    "id": 1099822685314600962,
+                    "id_str": "1099822685314600962",
+                    "indices": [
+                        72,
+                        95
+                    ],
+                    "media_url": "http://pbs.twimg.com/media/D0Na57oX0AIXonP.jpg",
+                    "media_url_https": "https://pbs.twimg.com/media/D0Na57oX0AIXonP.jpg",
+                    "sizes": {
+                        "large": {
+                            "h": 2000,
+                            "resize": "fit",
+                            "w": 1300
+                        },
+                        "medium": {
+                            "h": 1200,
+                            "resize": "fit",
+                            "w": 780
+                        },
+                        "small": {
+                            "h": 680,
+                            "resize": "fit",
+                            "w": 442
+                        },
+                        "thumb": {
+                            "h": 150,
+                            "resize": "crop",
+                            "w": 150
+                        }
+                    },
+                    "type": "photo",
+                    "url": "https://t.co/bGy1hIZid1"
+                },
+                {
+                    "display_url": "pic.twitter.com/bGy1hIZid1",
+                    "expanded_url": "https://twitter.com/grant_kru/status/1099822690091843586/photo/1",
+                    "id": 1099822685318795267,
+                    "id_str": "1099822685318795267",
+                    "indices": [
+                        72,
+                        95
+                    ],
+                    "media_url": "http://pbs.twimg.com/media/D0Na57pX0AMV5a-.jpg",
+                    "media_url_https": "https://pbs.twimg.com/media/D0Na57pX0AMV5a-.jpg",
+                    "sizes": {
+                        "large": {
+                            "h": 1334,
+                            "resize": "fit",
+                            "w": 799
+                        },
+                        "medium": {
+                            "h": 1200,
+                            "resize": "fit",
+                            "w": 719
+                        },
+                        "small": {
+                            "h": 680,
+                            "resize": "fit",
+                            "w": 407
+                        },
+                        "thumb": {
+                            "h": 150,
+                            "resize": "crop",
+                            "w": 150
+                        }
+                    },
+                    "type": "photo",
+                    "url": "https://t.co/bGy1hIZid1"
+                }
+            ]
+        },
+        "favorite_count": 8,
+        "favorited": false,
+        "geo": null,
+        "id": 1099822690091843586,
+        "id_str": "1099822690091843586",
+        "in_reply_to_screen_name": null,
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": null,
+        "in_reply_to_user_id_str": null,
+        "is_quote_status": false,
+        "lang": "en",
+        "place": {
+            "attributes": {},
+            "bounding_box": {
+                "coordinates": [
+                    [
+                        [
+                            -80.239991,
+                            42.018414
+                        ],
+                        [
+                            -79.934073,
+                            42.018414
+                        ],
+                        [
+                            -79.934073,
+                            42.202992
+                        ],
+                        [
+                            -80.239991,
+                            42.202992
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "contained_within": [],
+            "country": "United States",
+            "country_code": "US",
+            "full_name": "Erie, PA",
+            "id": "29aaa88d9fe74b50",
+            "name": "Erie",
+            "place_type": "city",
+            "url": "https://api.twitter.com/1.1/geo/id/29aaa88d9fe74b50.json"
+        },
+        "possibly_sensitive": false,
+        "retweet_count": 6,
+        "retweeted": false,
+        "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+        "text": "KRU &amp; @10cellphones_ \u2018TRAP VISION\u2019 spring/summer 2019 - coming soon https://t.co/bGy1hIZid1",
+        "truncated": false
+    },
+    "statuses_count": 110334,
+    "time_zone": null,
+    "translator_type": "none",
+    "url": "https://t.co/IN0rWmqoWV",
+    "utc_offset": null,
+    "verified": false
+}

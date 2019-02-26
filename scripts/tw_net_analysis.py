@@ -23,6 +23,10 @@ from nltk import word_tokenize
 from nltk import ngrams
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet as wn
+from nltk.text import TextCollection
+
+from wordcloud import WordCloud
+
 
 '''
 Instructions
@@ -50,7 +54,7 @@ Tokenize list of words
 '''
 def GetTokens(list_txt):
     tokens = []
-    for text in texts:
+    for text in list_txt:
         token = word_tokenize(text)
         tokens.append(token)
         
@@ -160,11 +164,11 @@ def GetTags(data):
     
     return tags
 
-def GetLexDiversity(data):
-    txts = GetText(data)
+def GetLexDiversity(cleanText):
+    # txts = data['text']
 
     divers = []
-    for text in txts:
+    for text in cleanText:
         divers.append(len(text)/len(set(text)))
 
     return divers

@@ -1,0 +1,101 @@
+{
+    "contributors_enabled": false,
+    "created_at": "Mon Sep 16 16:05:10 +0000 2013",
+    "default_profile": false,
+    "default_profile_image": false,
+    "description": "Official Twitter Account of the Mercyhurst Men's Hockey Program #HurstHockey / Laker For Life Campaign: https://t.co/Mt6RCvSKqL",
+    "entities": {
+        "description": {
+            "urls": [
+                {
+                    "display_url": "landing.mercyhurst.edu/lakerforlife",
+                    "expanded_url": "https://landing.mercyhurst.edu/lakerforlife",
+                    "indices": [
+                        104,
+                        127
+                    ],
+                    "url": "https://t.co/Mt6RCvSKqL"
+                }
+            ]
+        },
+        "url": {
+            "urls": [
+                {
+                    "display_url": "instagram.com/mercyhursthock\u2026",
+                    "expanded_url": "https://www.instagram.com/mercyhursthockey/",
+                    "indices": [
+                        0,
+                        23
+                    ],
+                    "url": "https://t.co/33sCuPuruJ"
+                }
+            ]
+        }
+    },
+    "favourites_count": 9736,
+    "follow_request_sent": false,
+    "followers_count": 4084,
+    "following": false,
+    "friends_count": 215,
+    "geo_enabled": true,
+    "has_extended_profile": false,
+    "id": 1872134220,
+    "id_str": "1872134220",
+    "is_translation_enabled": false,
+    "is_translator": false,
+    "lang": "en",
+    "listed_count": 61,
+    "location": "Erie, Pa",
+    "name": "Mercyhurst Hockey",
+    "notifications": false,
+    "profile_background_color": "000000",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile": false,
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/1872134220/1539446603",
+    "profile_image_url": "http://pbs.twimg.com/profile_images/1097897573610868736/sUKczUMi_normal.jpg",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1097897573610868736/sUKczUMi_normal.jpg",
+    "profile_link_color": "19CF86",
+    "profile_location": null,
+    "profile_sidebar_border_color": "000000",
+    "profile_sidebar_fill_color": "000000",
+    "profile_text_color": "000000",
+    "profile_use_background_image": false,
+    "protected": false,
+    "screen_name": "HurstMensHockey",
+    "status": {
+        "contributors": null,
+        "coordinates": null,
+        "created_at": "Sun Feb 24 00:15:52 +0000 2019",
+        "entities": {
+            "hashtags": [],
+            "symbols": [],
+            "urls": [],
+            "user_mentions": []
+        },
+        "favorite_count": 0,
+        "favorited": false,
+        "geo": null,
+        "id": 1099462881920323584,
+        "id_str": "1099462881920323584",
+        "in_reply_to_screen_name": null,
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": null,
+        "in_reply_to_user_id_str": null,
+        "is_quote_status": false,
+        "lang": "en",
+        "place": null,
+        "retweet_count": 0,
+        "retweeted": false,
+        "source": "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
+        "text": "Let's play some hockey!",
+        "truncated": false
+    },
+    "statuses_count": 11555,
+    "time_zone": null,
+    "translator_type": "none",
+    "url": "https://t.co/33sCuPuruJ",
+    "utc_offset": null,
+    "verified": false
+}

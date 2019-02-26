@@ -1,0 +1,112 @@
+{
+    "contributors_enabled": false,
+    "created_at": "Mon Mar 19 14:47:40 +0000 2007",
+    "default_profile": false,
+    "default_profile_image": false,
+    "description": "Co-Creator @LowScoreWins & @analyzrgolf w/@golfevolution. Owner @the_sand_trap. 5SK Dir. of Instructor Development. @golfdigest Top Young Teacher, Best in State",
+    "entities": {
+        "description": {
+            "urls": []
+        },
+        "url": {
+            "urls": [
+                {
+                    "display_url": "lowestscorewins.com",
+                    "expanded_url": "http://lowestscorewins.com/",
+                    "indices": [
+                        0,
+                        23
+                    ],
+                    "url": "https://t.co/waGnrNuZhY"
+                }
+            ]
+        }
+    },
+    "favourites_count": 557,
+    "follow_request_sent": false,
+    "followers_count": 1800,
+    "following": false,
+    "friends_count": 902,
+    "geo_enabled": true,
+    "has_extended_profile": true,
+    "id": 1512551,
+    "id_str": "1512551",
+    "is_translation_enabled": false,
+    "is_translator": false,
+    "lang": "en",
+    "listed_count": 64,
+    "location": "Erie, PA",
+    "name": "Erik J. Barzeski",
+    "notifications": false,
+    "profile_background_color": "131B05",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile": false,
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/1512551/1398378438",
+    "profile_image_url": "http://pbs.twimg.com/profile_images/456828596078641154/J3d_vdZT_normal.png",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/456828596078641154/J3d_vdZT_normal.png",
+    "profile_link_color": "009900",
+    "profile_location": null,
+    "profile_sidebar_border_color": "FFFFFF",
+    "profile_sidebar_fill_color": "DDEEFF",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "protected": false,
+    "screen_name": "iacas",
+    "status": {
+        "contributors": null,
+        "coordinates": null,
+        "created_at": "Sun Feb 24 23:33:18 +0000 2019",
+        "entities": {
+            "hashtags": [],
+            "symbols": [],
+            "urls": [],
+            "user_mentions": [
+                {
+                    "id": 2959645913,
+                    "id_str": "2959645913",
+                    "indices": [
+                        0,
+                        11
+                    ],
+                    "name": "Tommy",
+                    "screen_name": "MCSOgolfer"
+                },
+                {
+                    "id": 15382246,
+                    "id_str": "15382246",
+                    "indices": [
+                        12,
+                        17
+                    ],
+                    "name": "LPGA",
+                    "screen_name": "LPGA"
+                }
+            ]
+        },
+        "favorite_count": 0,
+        "favorited": false,
+        "geo": null,
+        "id": 1099814558011670528,
+        "id_str": "1099814558011670528",
+        "in_reply_to_screen_name": "MCSOgolfer",
+        "in_reply_to_status_id": 1099211450936119296,
+        "in_reply_to_status_id_str": "1099211450936119296",
+        "in_reply_to_user_id": 2959645913,
+        "in_reply_to_user_id_str": "2959645913",
+        "is_quote_status": false,
+        "lang": "en",
+        "place": null,
+        "retweet_count": 0,
+        "retweeted": false,
+        "source": "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
+        "text": "@MCSOgolfer @LPGA They had to wait on a Michelle Wie ruling anyway. They had plenty of time and didn't speed ANYTHING up at all.",
+        "truncated": false
+    },
+    "statuses_count": 10816,
+    "time_zone": null,
+    "translator_type": "none",
+    "url": "https://t.co/waGnrNuZhY",
+    "utc_offset": null,
+    "verified": false
+}

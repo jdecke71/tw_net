@@ -1,0 +1,192 @@
+{
+    "contributors_enabled": false,
+    "created_at": "Wed Jun 15 22:19:08 +0000 2011",
+    "default_profile": true,
+    "default_profile_image": false,
+    "description": "#PERSIST IS THE ANSWER TO RESIST! \nTEXAS born and raised!#Pennsylvania is my new home! #KeepErieRed #KeepPARed #DonaldTrump is my President! AND YOURS! \n#MAGA",
+    "entities": {
+        "description": {
+            "urls": []
+        }
+    },
+    "favourites_count": 20637,
+    "follow_request_sent": false,
+    "followers_count": 7552,
+    "following": false,
+    "friends_count": 7884,
+    "geo_enabled": true,
+    "has_extended_profile": false,
+    "id": 318061556,
+    "id_str": "318061556",
+    "is_translation_enabled": false,
+    "is_translator": false,
+    "lang": "en",
+    "listed_count": 65,
+    "location": "Pennsylvania, USA",
+    "name": "Grandma4Trump2020",
+    "notifications": false,
+    "profile_background_color": "C0DEED",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile": false,
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/318061556/1485310654",
+    "profile_image_url": "http://pbs.twimg.com/profile_images/824078530506063872/GkoyFnj1_normal.jpg",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/824078530506063872/GkoyFnj1_normal.jpg",
+    "profile_link_color": "1DA1F2",
+    "profile_location": {
+        "attributes": {},
+        "bounding_box": null,
+        "contained_within": [],
+        "country": "",
+        "country_code": "",
+        "full_name": "Pennsylvania, USA",
+        "id": "dd9c503d6c35364b",
+        "name": "Pennsylvania, USA",
+        "place_type": "unknown",
+        "url": "https://api.twitter.com/1.1/geo/id/dd9c503d6c35364b.json"
+    },
+    "profile_sidebar_border_color": "C0DEED",
+    "profile_sidebar_fill_color": "DDEEF6",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "protected": false,
+    "screen_name": "lindapezzino",
+    "status": {
+        "contributors": null,
+        "coordinates": null,
+        "created_at": "Wed Feb 20 13:45:26 +0000 2019",
+        "entities": {
+            "hashtags": [
+                {
+                    "indices": [
+                        42,
+                        56
+                    ],
+                    "text": "BentonStevens"
+                },
+                {
+                    "indices": [
+                        57,
+                        75
+                    ],
+                    "text": "HotChocolateStand"
+                },
+                {
+                    "indices": [
+                        76,
+                        89
+                    ],
+                    "text": "BuildTheWall"
+                },
+                {
+                    "indices": [
+                        99,
+                        112
+                    ],
+                    "text": "LittleHitler"
+                }
+            ],
+            "symbols": [],
+            "urls": [
+                {
+                    "display_url": "twitter.com/i/web/status/1\u2026",
+                    "expanded_url": "https://twitter.com/i/web/status/1098217062093213696",
+                    "indices": [
+                        117,
+                        140
+                    ],
+                    "url": "https://t.co/DZ6FpORb6s"
+                }
+            ],
+            "user_mentions": [
+                {
+                    "id": 25073877,
+                    "id_str": "25073877",
+                    "indices": [
+                        0,
+                        16
+                    ],
+                    "name": "Donald J. Trump",
+                    "screen_name": "realDonaldTrump"
+                },
+                {
+                    "id": 822215679726100480,
+                    "id_str": "822215679726100480",
+                    "indices": [
+                        17,
+                        23
+                    ],
+                    "name": "President Trump",
+                    "screen_name": "POTUS"
+                },
+                {
+                    "id": 471672239,
+                    "id_str": "471672239",
+                    "indices": [
+                        24,
+                        39
+                    ],
+                    "name": "Kellyanne Conway",
+                    "screen_name": "KellyannePolls"
+                }
+            ]
+        },
+        "favorite_count": 0,
+        "favorited": false,
+        "geo": null,
+        "id": 1098217062093213696,
+        "id_str": "1098217062093213696",
+        "in_reply_to_screen_name": "realDonaldTrump",
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": 25073877,
+        "in_reply_to_user_id_str": "25073877",
+        "is_quote_status": false,
+        "lang": "en",
+        "place": {
+            "attributes": {},
+            "bounding_box": {
+                "coordinates": [
+                    [
+                        [
+                            -80.0412724,
+                            42.138295
+                        ],
+                        [
+                            -80.003884,
+                            42.138295
+                        ],
+                        [
+                            -80.003884,
+                            42.163128
+                        ],
+                        [
+                            -80.0412724,
+                            42.163128
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "contained_within": [],
+            "country": "United States",
+            "country_code": "US",
+            "full_name": "Lawrence Park, PA",
+            "id": "ab55bcdf227baf03",
+            "name": "Lawrence Park",
+            "place_type": "city",
+            "url": "https://api.twitter.com/1.1/geo/id/ab55bcdf227baf03.json"
+        },
+        "retweet_count": 0,
+        "retweeted": false,
+        "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+        "text": "@realDonaldTrump @POTUS @KellyannePolls \n\n#BentonStevens\n#HotChocolateStand\n#BuildTheWall \n\nCalled #LittleHitler\nfo\u2026 https://t.co/DZ6FpORb6s",
+        "truncated": true
+    },
+    "statuses_count": 61564,
+    "time_zone": null,
+    "translator_type": "none",
+    "url": null,
+    "utc_offset": null,
+    "verified": false
+}

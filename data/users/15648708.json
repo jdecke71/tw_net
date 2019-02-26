@@ -1,0 +1,146 @@
+{
+    "contributors_enabled": false,
+    "created_at": "Tue Jul 29 17:45:56 +0000 2008",
+    "default_profile": true,
+    "default_profile_image": false,
+    "description": "Ham radio op, SF fan, guide dog owner/trainer, geek, animal lover, what else?",
+    "entities": {
+        "description": {
+            "urls": []
+        },
+        "url": {
+            "urls": [
+                {
+                    "display_url": "buddy.brannan.name/blog",
+                    "expanded_url": "http://buddy.brannan.name/blog",
+                    "indices": [
+                        0,
+                        23
+                    ],
+                    "url": "https://t.co/Y5KXHeCso3"
+                }
+            ]
+        }
+    },
+    "favourites_count": 1301,
+    "follow_request_sent": false,
+    "followers_count": 2427,
+    "following": false,
+    "friends_count": 1322,
+    "geo_enabled": true,
+    "has_extended_profile": false,
+    "id": 15648708,
+    "id_str": "15648708",
+    "is_translation_enabled": false,
+    "is_translator": false,
+    "lang": "en",
+    "listed_count": 101,
+    "location": "Austin, TX",
+    "name": "Buddy Brannan",
+    "notifications": false,
+    "profile_background_color": "C0DEED",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile": false,
+    "profile_image_url": "http://pbs.twimg.com/profile_images/571468906892496896/7PAAHzgD_normal.jpeg",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/571468906892496896/7PAAHzgD_normal.jpeg",
+    "profile_link_color": "1DA1F2",
+    "profile_location": null,
+    "profile_sidebar_border_color": "C0DEED",
+    "profile_sidebar_fill_color": "DDEEF6",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "protected": false,
+    "screen_name": "bbrannan",
+    "status": {
+        "contributors": null,
+        "coordinates": {
+            "coordinates": [
+                -80.14323804,
+                42.07420149
+            ],
+            "type": "Point"
+        },
+        "created_at": "Wed Feb 13 14:55:16 +0000 2019",
+        "entities": {
+            "hashtags": [],
+            "symbols": [],
+            "urls": [
+                {
+                    "display_url": "swarmapp.com/c/dbvHbDDBaaE",
+                    "expanded_url": "https://www.swarmapp.com/c/dbvHbDDBaaE",
+                    "indices": [
+                        29,
+                        52
+                    ],
+                    "url": "https://t.co/M1Y7EkmR5J"
+                }
+            ],
+            "user_mentions": []
+        },
+        "favorite_count": 1,
+        "favorited": false,
+        "geo": {
+            "coordinates": [
+                42.07420149,
+                -80.14323804
+            ],
+            "type": "Point"
+        },
+        "id": 1095697924036706311,
+        "id_str": "1095697924036706311",
+        "in_reply_to_screen_name": null,
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": null,
+        "in_reply_to_user_id_str": null,
+        "is_quote_status": false,
+        "lang": "en",
+        "place": {
+            "attributes": {},
+            "bounding_box": {
+                "coordinates": [
+                    [
+                        [
+                            -80.239991,
+                            42.018414
+                        ],
+                        [
+                            -79.934073,
+                            42.018414
+                        ],
+                        [
+                            -79.934073,
+                            42.202992
+                        ],
+                        [
+                            -80.239991,
+                            42.202992
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "contained_within": [],
+            "country": "United States",
+            "country_code": "US",
+            "full_name": "Erie, PA",
+            "id": "29aaa88d9fe74b50",
+            "name": "Erie",
+            "place_type": "city",
+            "url": "https://api.twitter.com/1.1/geo/id/29aaa88d9fe74b50.json"
+        },
+        "possibly_sensitive": false,
+        "retweet_count": 1,
+        "retweeted": false,
+        "source": "<a href=\"http://foursquare.com\" rel=\"nofollow\">Foursquare</a>",
+        "text": "I'm at Kwik Fill in Erie, PA https://t.co/M1Y7EkmR5J",
+        "truncated": false
+    },
+    "statuses_count": 66652,
+    "time_zone": null,
+    "translator_type": "none",
+    "url": "https://t.co/Y5KXHeCso3",
+    "utc_offset": null,
+    "verified": false
+}

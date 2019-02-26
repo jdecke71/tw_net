@@ -1,0 +1,132 @@
+{
+    "contributors_enabled": false,
+    "created_at": "Mon Aug 08 19:50:27 +0000 2011",
+    "default_profile": false,
+    "default_profile_image": false,
+    "description": "Mercyhurst University \u26be\ufe0f|22|fouronetwo|Snapchat: Kennyrob412",
+    "entities": {
+        "description": {
+            "urls": []
+        }
+    },
+    "favourites_count": 12978,
+    "follow_request_sent": false,
+    "followers_count": 2057,
+    "following": false,
+    "friends_count": 1728,
+    "geo_enabled": true,
+    "has_extended_profile": true,
+    "id": 351097318,
+    "id_str": "351097318",
+    "is_translation_enabled": false,
+    "is_translator": false,
+    "lang": "en",
+    "listed_count": 7,
+    "location": "Pittsburgh, PA",
+    "name": "K Rob",
+    "notifications": false,
+    "profile_background_color": "131516",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme14/bg.gif",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme14/bg.gif",
+    "profile_background_tile": false,
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/351097318/1544412660",
+    "profile_image_url": "http://pbs.twimg.com/profile_images/1071970486609952769/eAermPk2_normal.jpg",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1071970486609952769/eAermPk2_normal.jpg",
+    "profile_link_color": "009999",
+    "profile_location": null,
+    "profile_sidebar_border_color": "EEEEEE",
+    "profile_sidebar_fill_color": "EFEFEF",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "protected": false,
+    "screen_name": "kennyrob24",
+    "status": {
+        "contributors": null,
+        "coordinates": null,
+        "created_at": "Sun Feb 24 13:58:36 +0000 2019",
+        "entities": {
+            "hashtags": [],
+            "symbols": [],
+            "urls": [],
+            "user_mentions": [
+                {
+                    "id": 560015282,
+                    "id_str": "560015282",
+                    "indices": [
+                        0,
+                        15
+                    ],
+                    "name": "Kachado",
+                    "screen_name": "keykey_Kachado"
+                },
+                {
+                    "id": 1700815711,
+                    "id_str": "1700815711",
+                    "indices": [
+                        16,
+                        30
+                    ],
+                    "name": "Luke Baranchak",
+                    "screen_name": "LukeBaranchak"
+                }
+            ]
+        },
+        "favorite_count": 1,
+        "favorited": false,
+        "geo": null,
+        "id": 1099669928104415232,
+        "id_str": "1099669928104415232",
+        "in_reply_to_screen_name": "keykey_Kachado",
+        "in_reply_to_status_id": 1099669442320060416,
+        "in_reply_to_status_id_str": "1099669442320060416",
+        "in_reply_to_user_id": 560015282,
+        "in_reply_to_user_id_str": "560015282",
+        "is_quote_status": false,
+        "lang": "en",
+        "place": {
+            "attributes": {},
+            "bounding_box": {
+                "coordinates": [
+                    [
+                        [
+                            -80.303016,
+                            39.2508897
+                        ],
+                        [
+                            -80.2694342,
+                            39.2508897
+                        ],
+                        [
+                            -80.2694342,
+                            39.2817103
+                        ],
+                        [
+                            -80.303016,
+                            39.2817103
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "contained_within": [],
+            "country": "United States",
+            "country_code": "US",
+            "full_name": "Anmoore, WV",
+            "id": "013a84cd69ab006c",
+            "name": "Anmoore",
+            "place_type": "city",
+            "url": "https://api.twitter.com/1.1/geo/id/013a84cd69ab006c.json"
+        },
+        "retweet_count": 0,
+        "retweeted": false,
+        "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+        "text": "@keykey_Kachado @LukeBaranchak Preciate it brotha \ud83e\udd1e\ud83c\udffd",
+        "truncated": false
+    },
+    "statuses_count": 26267,
+    "time_zone": null,
+    "translator_type": "none",
+    "url": null,
+    "utc_offset": null,
+    "verified": false
+}
