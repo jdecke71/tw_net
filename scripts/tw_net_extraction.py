@@ -405,35 +405,38 @@ def DetermineInfluenceInterval(data, isRandom=False):
     ids = set(data['id_str'].tolist())
     data = data.sort_values(by=['influence_score'],ascending=False)
 
-    # For each unique id, get table 
-    for tweet_id in ids:
-        tmp = data[data['id_str']==tweet_id]
-        tmp.sort_values(by='call',ascending=True)
-        rows = list(tmp.index)
-        # Delete all if missing any file
-        if len(rows) != MAX_CALLS:
-            # print('Not enough rows.')
-            for row in rows: 
-                data = data.drop(index=row)
-        elif isRandom == True:
-            # get random index
-            randIndex = random.randint(0,len(rows)-1)
-            survivor = rows.pop(randIndex)
-            for row in rows:
-                if row != survivor:
+    if len(ids) == len(set(ids)):
+        pass
+    else:
+        # For each unique id, get table 
+        for tweet_id in ids:
+            tmp = data[data['id_str']==tweet_id]
+            tmp.sort_values(by='call',ascending=True)
+            rows = list(tmp.index)
+            # Delete all if missing any file
+            if len(rows) != MAX_CALLS:
+                # print('Not enough rows.')
+                for row in rows: 
                     data = data.drop(index=row)
-        else:
-            # Algorithm for influence goes here
-            max_influence = -1
-            # print('Deleting non-inluential.')
-            for row in rows:
-                influence = tmp.loc[row]['influence_score']
-                
-                # Set as influencer or delete
-                if influence > max_influence:
-                    max_influence = influence
-                else:
-                    data = data.drop(index=row)
+            elif isRandom == True:
+                # get random index
+                randIndex = random.randint(0,len(rows)-1)
+                survivor = rows.pop(randIndex)
+                for row in rows:
+                    if row != survivor:
+                        data = data.drop(index=row)
+            else:
+                # Algorithm for influence goes here
+                max_influence = -1
+                # print('Deleting non-inluential.')
+                for row in rows:
+                    influence = tmp.loc[row]['influence_score']
+                    
+                    # Set as influencer or delete
+                    if influence > max_influence:
+                        max_influence = influence
+                    else:
+                        data = data.drop(index=row)
 
     # Set inluence interval
     rows = list(data.index)
