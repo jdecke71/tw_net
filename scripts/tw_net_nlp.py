@@ -114,11 +114,11 @@ def show_wordcloud(data, title = None):
 
 
 def red_color_func(word, font_size, position, orientation, random_state=None,**kwargs):
-    # "hsl(0, 100%, %d%%)" % random.randint(60, 100)
-    return '#FF0000'
+    # '#FF0000'
+    return "hsl(0, 100, %d%%)" % random.randint(50,90)
 
 def blue_color_func(word, font_size, position, orientation, random_state=None,**kwargs):
-    # "hsl(67, 0%%, %d%%)" % random.randint(60, 100)
+    # "hsl(240, 100%, %d%%)" % random.randint(50, 90) 
     return '#0000FF'
 
 def ExamineText(text_list,title):
