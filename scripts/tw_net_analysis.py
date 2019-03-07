@@ -10,7 +10,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import seaborn as  sns
 import networkx as nx
-from IPython.display import IFrame
+from IPython.display import iframe
 
 # Local 
 import twt_func

@@ -427,7 +427,7 @@ def DetermineInfluenceInterval(data, isRandom=False):
                     data = data.drop(index=row)
         else:
             # Algorithm for influence goes here
-            max_influence = 0
+            max_influence = 1
             for row in rows:
                 influence = tmp.loc[row]['influence_score']
                 
