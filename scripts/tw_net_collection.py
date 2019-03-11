@@ -29,7 +29,7 @@ Get a filename for given 3 digit combo
 Uses stub for all. Add as default stubto allow arg.
 '''
 def GetFileName(day,set_n,call=0):
-    file_stub = '../data/feb'
+    file_stub = '../data/march'
     
     filename = ''
     if call >= 0 or call <= 10:
@@ -71,7 +71,7 @@ def FilterStatusByLocation(params):
         county_geo = '-80.519,42,-79.762,42.27'
         city_geo = '-80.2,42.05,-79.9,42.2'
         pitt_geo = '-80.1,40.4,-79.9,40.5'
-        search_box =  pitt_geo
+        search_box =  city_geo
         pathToKey = '../resources/usr_auth.txt'
 
         n=150
@@ -159,7 +159,7 @@ def GetUpdatedStatuses(params):
     filename = GetFileName(day_num,set_name,call_num-1)
     tweet_ids = GetTweetIds(filename)
     
-    pathToKey = '../data/social/usr_auth.txt'
+    pathToKey = '../resources/usr_auth.txt'
         
     # Pass id get status  
     twit_api = twt_func.GetTwitterRest(pathToKey)
@@ -224,7 +224,7 @@ def MakeSets(month,day,schedule):
         sets.append(set_x)
         j+=num_calls
     
-    filename = '../data/feb'+'/D'+str(day)+'/sets.json'
+    filename = '../data/march'+'/D'+str(day)+'/sets.json'
     file_io.WriteJSON(sets,filename)
 
 #     return sets,all_times
@@ -239,7 +239,7 @@ times,day
 '''
 def RunTimer(day):
     
-    filename = '../data/social/twnet'+'/D'+str(day)+'/sets.json'
+    filename = '../data/march'+'/D'+str(day)+'/sets.json'
     sets = file_io.ReadJSON(filename)
     
     times = []
@@ -277,7 +277,7 @@ def RunTimer(day):
 def PreviewSchedule(day):
 #     from datetime import datetime
     
-    filename = '../data/social/twnet'+'/D'+str(day)+'/sets.json'
+    filename = '../data/march'+'/D'+str(day)+'/sets.json'
     sets = file_io.ReadJSON(filename)
     
     times = []
@@ -311,7 +311,7 @@ def PreviewSchedule(day):
 Update a set call
 '''
 def SetCall(day,set_n,call):
-    filename = '../data/feb'+'/D'+str(day)+'/sets.json'
+    filename = '../data/march'+'/D'+str(day)+'/sets.json'
     sets = file_io.ReadJSON(filename)
 
     sets[set_n]['call'] = call    
